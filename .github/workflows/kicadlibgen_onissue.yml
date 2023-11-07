@@ -51,12 +51,21 @@ jobs:
 
     - name: Commit and push changes to main
       run: |
+        comment="${{ steps.run-script.outputs.script-output }}"
+        
         git config user.email "s.kleppe@pm.me"
         git config user.name "Datenkrake"
         git checkout main  # Switch to the main branch
+        git pull # pull latest changes
         git add .  # Stage all changes
-        git commit -m "Update main branch"  # Commit changes with a message
+        git commit -m $comment  # Commit changes with a message
         git push  # Push changes to the main branch
+        
+    - name: Get commit link
+      run: |
+        commit_sha="${{ github.sha }}"
+        commit_link="https://github.com/${{ github.repository }}/commit/$commit_sha"
+        echo "Commit Link: $commit_link"
 
     - name: Comment on the issue
       run: |
@@ -67,7 +76,7 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '{
-            "body": "'"$comment"'"
+            "body": "'"$commit_link\n$comment"'"
           }' \
           "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments"
 
