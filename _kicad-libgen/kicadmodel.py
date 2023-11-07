@@ -3,6 +3,7 @@ from sqlmodel import Field, SQLModel, Relationship, JSON, Column, Integer, Strin
 from datetime import datetime
 
 class KicadComponent(SQLModel, table=True):
+    #__tablename__ = "kicadcomponent"
     id: Optional[int] = Field(default=None, primary_key=True)
 
     Symbols: str
