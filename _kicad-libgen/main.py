@@ -164,7 +164,7 @@ def query_lcsc(jlc_pid: str):
         statement = select(kicadmodel.KicadComponent).where(kicadmodel.KicadComponent.LCSC == kicad_component.LCSC)
         result = session.exec(statement).all()
         # if it is, check whether the data is different
-        if result is not None:
+        if result is not None and len(result) > 0:
             print("result first: ", result[0])
             old_kicad_component = result[0]
             for key, value in kicad_component.dict().items():
