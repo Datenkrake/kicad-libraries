@@ -3,9 +3,10 @@ import subprocess
 import json
 import requests
 #import os
-from sqlmodel import Session, select
-from database import engine, create_db_and_tables
+from sqlmodel import SQLModel, Session, select
 import kicadmodel
+
+from database import engine, create_db_and_tables
 
 class KiCADlibGen:
     # take a jlc_pid as input and generate a KiCAD lib file by calling JLC2KiCadlib with the jlc_pid
@@ -124,31 +125,24 @@ class KiCADlibGen:
             # added JLC2KiCad_lib/footprint/packages3d/LQFP-44_L10.0-W10.0-P0.80-LS12.0-BL.step to footprint\n
             # created 'JLC2KiCad_lib/footprint/LQFP-44_L10.0-W10.0-P0.80-LS12.0-BL.kicad_mod'\n
             
-            # check whether services.JLC2KiCad_lib is a git repo
-            # if not, clone it
-            # if not os.path.exists("../api/services/JLC2KiCad_lib"):
-            # add all the files to the git repo in JLC2KiCad_lib
-            # subprocess.run(["git", "add", "."]) #, cwd="JLC2KiCad_lib")
-            # # commit the changes
-            # subprocess.run(["git", "commit", "-m", f"added {jlc_pid}"])#, cwd="JLC2KiCad_lib")
-            # # push the changes
-            # subprocess.run(["git", "push", "--set-upstream", "origin", "dev"])#, cwd="JLC2KiCad_lib")
         else:
             thingdict = None
 
         return thingdict
 
 
+
 kicadlibgen = KiCADlibGen()
 
-
 def query_lcsc(jlc_pid: str):
+
     #kicadlobgen = KiCADlibGen()
     lcsc_data = kicadlibgen.query_item(jlc_pid=jlc_pid, options="")
+    print(lcsc_data)
     if lcsc_data is None:
         return {"message": "not found"}
     # force lcsc_data to be a dict
-    lcsc_data = json.loads(lcsc_data)
+    #lcsc_data = json.loads(lcsc_data)
     # create a kicad_model.KicadComponent object from the dict, mapping each field to a key
     kicad_component = kicadmodel.KicadComponent()
     kicad_component.LCSC = lcsc_data["LCSC_PID"]
@@ -184,14 +178,16 @@ def query_lcsc(jlc_pid: str):
 # make callable from the command line
 if __name__ == "__main__":
     import argparse
+    # if no db exists, create it
+    #SQLModel.metadata.create_all(engine)
     parser = argparse.ArgumentParser(description="Query the LCSC database")
     parser.add_argument("jlc_pid", type=str, help="JLCPCB part #")
     args = parser.parse_args()
     query_lcsc(args.jlc_pid)
 
 
-
-#create_db_and_tables()
+#%%
+# create_db_and_tables()
 # result = query_lcsc("C6653")
 # result
 # # %%
