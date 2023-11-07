@@ -1,4 +1,4 @@
-(module "SOIC-14_L10.0-W5.5-P1.27-LS7.8-BL" (layer F.Cu) (tedit 654A7893)
+(module "SOIC-14_L10.0-W5.5-P1.27-LS7.8-BL" (layer F.Cu) (tedit 654A921C)
   (descr "SOIC-14_L10.0-W5.5-P1.27-LS7.8-BL footprint")
   (tags "SOIC-14_L10.0-W5.5-P1.27-LS7.8-BL footprint")
   (fp_text reference REF** (at 0 -5.565405) (layer F.SilkS)
