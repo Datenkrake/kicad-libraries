@@ -49,6 +49,9 @@ jobs:
         output=$(python _kicad-libgen/main.py "${{ github.event.issue.title }}")
         echo "::set-output name=script-output::$output"
 
+    - name: Set Git Config for Rebase
+      run: git config pull.rebase true
+
     - name: Commit and push changes to main
       run: |
         comment="${{ steps.run-script.outputs.script-output }}"
@@ -58,7 +61,6 @@ jobs:
         git checkout main  # Switch to the main branch
         git add .  # Stage all changes
         git commit -m "$comment"  # Commit changes with a message
-        git config pull.ff only
         git pull # pull latest changes
         git push  # Push changes to the main branch
         
