@@ -35,6 +35,11 @@ jobs:
         # When 'true', a version range passed to 'python-version' input will match prerelease versions if no GA versions are found. Only 'x.y' version range is supported for CPython.
         # allow-prereleases: # optional
 
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
     - name: Run your action here
       # Add the steps or commands you want to run when an issue is created
       # For example, you can use a script or command to perform some actions.
