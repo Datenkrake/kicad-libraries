@@ -58,7 +58,7 @@ jobs:
         git checkout main  # Switch to the main branch
         git add .  # Stage all changes
         git commit -m "$comment"  # Commit changes with a message
-        git pull # pull latest changes
+        git pull.rebase # pull latest changes
         git push  # Push changes to the main branch
         
     - name: Get commit link
