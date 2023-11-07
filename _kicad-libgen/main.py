@@ -65,7 +65,13 @@ class KiCADlibGen:
 
        # # get additional info from LCSC
         lcsc_url = f"https://wmsc.lcsc.com/wmsc/search/global?keyword={jlc_pid}"
+        # print (lcsc_url) formatted as image in markdown
+        # ![lcsc_url](lcsc_url) to embedd the image in markdown
+
         image_url = f"https://easyeda.com/api/products/{jlc_pid}/svgs"
+        # image = requests.get(image_url).content["result"]["svg"]
+        # save the image to a file named after the jlc_pid
+
         response = requests.get(lcsc_url)
        # # check if the request was successful
         if response.status_code != 200:
@@ -158,7 +164,8 @@ def query_lcsc(jlc_pid: str):
         statement = select(kicadmodel.KicadComponent).where(kicadmodel.KicadComponent.LCSC == kicad_component.LCSC)
         result = session.exec(statement)
         # if it is, check whether the data is different
-        if result:
+        if result.first() is not None:
+            print("result first: ", result.first())
             old_kicad_component = result.first()
             for key, value in kicad_component.dict().items():
                 if value is not None:
