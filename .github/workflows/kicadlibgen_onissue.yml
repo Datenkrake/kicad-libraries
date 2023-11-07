@@ -9,6 +9,9 @@ jobs:
   issue_created:
     runs-on: ubuntu-latest
 
+    concurrency:
+      group: my-workflow-${{ github.ref }}
+
     steps:
     - name: Check out code
       uses: actions/checkout@v2
