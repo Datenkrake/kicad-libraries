@@ -53,12 +53,12 @@ jobs:
       run: |
         comment="${{ steps.run-script.outputs.script-output }}"
         
-        git config user.email "s.kleppe@pm.me"
+        git config user.email "refried08oatmeal@icloud.com"
         git config user.name "Datenkrake"
         git checkout main  # Switch to the main branch
-        git pull # pull latest changes
         git add .  # Stage all changes
         git commit -m "$comment"  # Commit changes with a message
+        git pull # pull latest changes
         git push  # Push changes to the main branch
         
     - name: Get commit link
