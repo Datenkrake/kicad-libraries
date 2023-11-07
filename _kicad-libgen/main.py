@@ -148,7 +148,7 @@ def query_lcsc(jlc_pid: str):
     if lcsc_data is None:
         return {"message": "not found"}
     # force lcsc_data to be a dict
-    lcsc_data = dict(lcsc_data)
+    lcsc_data = json.loads(lcsc_data)
     # create a kicad_model.KicadComponent object from the dict, mapping each field to a key
     kicad_component = kicadmodel.KicadComponent()
     kicad_component.LCSC = lcsc_data["LCSC_PID"]
