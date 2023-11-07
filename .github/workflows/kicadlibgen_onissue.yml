@@ -44,4 +44,13 @@ jobs:
       # Add the steps or commands you want to run when an issue is created
       # For example, you can use a script or command to perform some actions.
       # Here's a basic example that echoes a message:
-      run: echo "New issue created!"
+      run: python _kicad-libgen/main.py "${{ github.event.issue.title }}"
+
+    - name: Commit and push changes to main
+      run: |
+        git config user.email "s.kleppe@pm.me"
+        git config user.name "Datenkrake"
+        git checkout main  # Switch to the main branch
+        git add .  # Stage all changes
+        git commit -m "Update main branch"  # Commit changes with a message
+        git push  # Push changes to the main branch
