@@ -1,4 +1,4 @@
-(module "BUZ-TH_BD9.6-P5.00-D0.7-FD" (layer F.Cu) (tedit 654A9510)
+(module "BUZ-TH_BD9.6-P5.00-D0.7-FD" (layer F.Cu) (tedit 654A957E)
   (descr "BUZ-TH_BD9.6-P5.00-D0.7-FD footprint")
   (tags "BUZ-TH_BD9.6-P5.00-D0.7-FD footprint")
   (fp_text reference REF** (at 0 -2) (layer F.SilkS)
