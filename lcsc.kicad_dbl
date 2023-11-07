@@ -1,0 +1,52 @@
+{
+    "meta": {
+        "version": 0
+    },
+    "name": "My LCSC Database Library",
+    "description": "A database of LCSC components",
+    "source": {
+        "type": "odbc",
+        "dsn": "",
+        "username": "",
+        "password": "",
+        "timeout_seconds": 2,
+        "connection_string": ""
+    },
+    "libraries": [
+        {
+            "name": "kicad components",
+            "table": "kicadcomponents",
+            "key": "id",
+            "symbols": "Symbols",
+            "footprints": "Footprints",
+            "MPN": "MPN",
+            "MFR": "MFR",
+            "LCSC": "LCSC",
+            "Value": "Value",
+            "fields": [
+                {
+                    "column": "MPN",
+                    "name": "MPN",
+                    "visible_on_add": true,
+                    "visible_in_chooser": true,
+                    "show_name": true,
+                    "inherit_properties": true
+                },
+                {
+                    "column": "Value",
+                    "name": "Value",
+                    "visible_on_add": false,
+                    "visible_in_chooser": true,
+                    "show_name": false
+                }
+            ],
+            "properties": {
+                "description": "Description",
+                "footprint_filters": "Footprint Filters",
+                "keywords": "Keywords",
+                "exclude_from_bom": "No BOM",
+                "exclude_from_board": "Schematic Only"
+            }
+        }
+    ]
+}
