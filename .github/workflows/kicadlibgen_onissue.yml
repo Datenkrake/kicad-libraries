@@ -58,7 +58,7 @@ jobs:
         git checkout main  # Switch to the main branch
         git add .  # Stage all changes
         git commit -m "$comment"  # Commit changes with a message
-        git config pull.rebase true
+        git config pull.ff only
         git pull # pull latest changes
         git push  # Push changes to the main branch
         
