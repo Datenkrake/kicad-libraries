@@ -182,16 +182,16 @@ def query_lcsc(jlc_pid: str):
     
 #%%
 # make callable from the command line
-# if __name__ == "__main__":
-#     import argparse
-#     parser = argparse.ArgumentParser(description="Query the LCSC database")
-#     parser.add_argument("jlc_pid", type=str, help="JLCPCB part #")
-#     args = parser.parse_args()
-#     query_lcsc(args.jlc_pid)
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Query the LCSC database")
+    parser.add_argument("jlc_pid", type=str, help="JLCPCB part #")
+    args = parser.parse_args()
+    query_lcsc(args.jlc_pid)
 
 
 
 #create_db_and_tables()
-result = query_lcsc("C6653")
-result
+# result = query_lcsc("C6653")
+# result
 # # %%
