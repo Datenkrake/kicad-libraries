@@ -1,7 +1,7 @@
 from sqlmodel import SQLModel, create_engine, Session
 #import os
 
-DATABASE_URL = "sqlite:///db.sqlite3"
+DATABASE_URL = "sqlite:///_kicad-libgen/db.sqlite3"
 engine = create_engine(DATABASE_URL, echo=True)
 
 def create_db_and_tables():
