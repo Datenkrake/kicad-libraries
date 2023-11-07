@@ -1,4 +1,4 @@
-(module "FILTER-SMD_4P-L9.0-W6.0_B82790" (layer F.Cu) (tedit 654A95A1)
+(module "FILTER-SMD_4P-L9.0-W6.0_B82790" (layer F.Cu) (tedit 654A980E)
   (descr "FILTER-SMD_4P-L9.0-W6.0_B82790 footprint")
   (tags "FILTER-SMD_4P-L9.0-W6.0_B82790 footprint")
   (fp_text reference REF** (at 0.0635 -6.195047) (layer F.SilkS)
