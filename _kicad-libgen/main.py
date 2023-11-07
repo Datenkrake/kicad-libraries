@@ -160,7 +160,7 @@ def query_lcsc(jlc_pid: str):
         # if it is, check whether the data is different
         if len(result.all()) > 0:
             # if it is, update the data
-            old_kicad_component = result.one()
+            old_kicad_component = result
             for key, value in kicad_component.dict().items():
                 if value is not None:
                     setattr(old_kicad_component, key, value)
