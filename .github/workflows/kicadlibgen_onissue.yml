@@ -41,10 +41,13 @@ jobs:
         pip install -r _kicad-libgen/requirements.txt
 
     - name: Run your action here
+      id: run-script
       # Add the steps or commands you want to run when an issue is created
       # For example, you can use a script or command to perform some actions.
       # Here's a basic example that echoes a message:
-      run: python _kicad-libgen/main.py "${{ github.event.issue.title }}"
+      run: |
+        output=$(python _kicad-libgen/main.py "${{ github.event.issue.title }}")
+        echo "::set-output name=script-output::$output"
 
     - name: Commit and push changes to main
       run: |
@@ -54,3 +57,19 @@ jobs:
         git add .  # Stage all changes
         git commit -m "Update main branch"  # Commit changes with a message
         git push  # Push changes to the main branch
+
+    - name: Comment on the issue
+      run: |
+        issue_number=${{ github.event.issue.number }}  # Replace with the actual issue number
+        comment="${{ steps.run-script.outputs.script-output }}"
+    
+        curl -X POST \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "body": "'"$comment"'"
+          }' \
+          "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments"
+
+
+        
