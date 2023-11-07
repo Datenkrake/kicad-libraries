@@ -166,7 +166,7 @@ def query_lcsc(jlc_pid: str):
         # if it is, check whether the data is different
         if result[0] is not None:
             print("result first: ", result[0])
-            old_kicad_component = result.first()
+            old_kicad_component = result[0]
             for key, value in kicad_component.dict().items():
                 if value is not None:
                     setattr(old_kicad_component, key, value)
