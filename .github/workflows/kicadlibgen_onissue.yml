@@ -70,13 +70,13 @@ jobs:
     - name: Comment on the issue
       run: |
         issue_number=${{ github.event.issue.number }}  # Replace with the actual issue number
-        comment="${{ steps.run-script.outputs.script-output }}"
-    
+        comment="${{ steps.run-script.outputs.script-output }} Commit Link: $commit_link"
+  
         curl -X POST \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '{
-            "body": "'"$commit_link\n$comment"'"
+            "body": "'"$comment"'"
           }' \
           "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments"
 
