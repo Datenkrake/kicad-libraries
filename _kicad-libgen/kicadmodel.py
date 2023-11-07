@@ -1,0 +1,13 @@
+from typing import List, Optional, Set, Dict
+from sqlmodel import Field, SQLModel, Relationship, JSON, Column, Integer, String, Boolean, DateTime, Float, Enum
+from datetime import datetime
+
+class KicadComponent(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+
+    Symbols: str
+    Footprints: str
+    MFR: str
+    MPN: str
+    LCSC: str
+    Value: str
