@@ -159,14 +159,12 @@ def query_lcsc(jlc_pid: str):
         result = session.exec(statement)
         # if it is, check whether the data is different
         if len(result.all()) > 0:
-            # if it is, update the data
-            old_kicad_component = result
+            old_kicad_component = result.first()
             for key, value in kicad_component.dict().items():
                 if value is not None:
                     setattr(old_kicad_component, key, value)
-            session.add(old_kicad_component)
+            session.merge(old_kicad_component)
             session.commit()
-            session.refresh(old_kicad_component)
             return old_kicad_component
         # if not, add it
         session.add(kicad_component)
