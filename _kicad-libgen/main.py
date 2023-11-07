@@ -99,7 +99,7 @@ class KiCADlibGen:
         footprint = [s for s in info if ".kicad_mod" in s]
         if len(footprint) > 0:
             footprint = footprint[0]
-            footprint = footprint[footprint.find("created ")+len("created "):].split("/")[-1]
+            footprint = footprint[footprint.find("created ")+len("created "):-1].split("/")[-1]
         else:
             footprint = None
 
