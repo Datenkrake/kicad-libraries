@@ -16,7 +16,7 @@
         {
             "name": "kicadcomponent",
             "table": "kicadcomponent",
-            "key": "id",
+            "key": "Part ID",
             "symbols": "Symbols",
             "footprints": "Footprints",
             "fields": [

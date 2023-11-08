@@ -4,11 +4,11 @@ from datetime import datetime
 
 class KicadComponent(SQLModel, table=True):
     #__tablename__ = "kicadcomponent"
-    id: Optional[int] = Field(default=None, primary_key=True)
-
+    'Part ID': Optional[str] = Field(default=None, primary_key=True)
     Symbols: str
     Footprints: str
     MFR: str
     MPN: str
     LCSC: str
     Value: str
+    # create "Part ID"  property
