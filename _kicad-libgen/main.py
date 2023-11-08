@@ -92,6 +92,7 @@ class KiCADlibGen:
         if len(symbol) > 0:
             symbol = symbol[0]
             symbol = symbol[symbol.find("creating symbol ")+len("creating symbol "):symbol.find(" in")]
+            symbol = symbol+":"+symbol
         else:
             symbol = None
 
@@ -106,6 +107,7 @@ class KiCADlibGen:
         if len(footprint) > 0:
             footprint = footprint[0]
             footprint = footprint[footprint.find("created ")+len("created "):-1].split("/")[-1]
+            footprint = "footprint:"+footprint
         else:
             footprint = None
 
@@ -160,24 +162,24 @@ def query_lcsc(jlc_pid: str):
 
 
     with Session(engine) as session:
-    try:
-        existing_component = session.query(KicadComponent).filter(KicadComponent.LCSC == kicad_component.LCSC).one()
-        
-        # Component found, update attributes
-        for key, value in kicad_component.dict().items():
-            if value is not None:
-                setattr(existing_component, key, value)
-    except NoResultFound:
-        # Component not found, add it
-        session.add(kicad_component)
+        try:
+            existing_component = session.query(KicadComponent).filter(KicadComponent.LCSC == kicad_component.LCSC).one()
+            
+            # Component found, update attributes
+            for key, value in kicad_component.dict().items():
+                if value is not None:
+                    setattr(existing_component, key, value)
+        except NoResultFound:
+            # Component not found, add it
+            session.add(kicad_component)
 
-    # Commit changes
-    session.commit()
+        # Commit changes
+        session.commit()
 
-    # Refresh the component
-    session.refresh(kicad_component)
+        # Refresh the component
+        session.refresh(kicad_component)
 
-return kicad_component
+    return kicad_component
     
 #%%
 # make callable from the command line
