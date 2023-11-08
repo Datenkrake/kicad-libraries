@@ -166,7 +166,6 @@ def query_lcsc(jlc_pid: str):
     kicad_component.Symbols = lcsc_data["LCSC Symbol"]
     kicad_component.Footprints = lcsc_data["LCSC Footprint"]
 
-
     with Session(engine) as session:
         try:
             existing_component = session.query(kicadmodel.KicadComponent).filter(kicadmodel.KicadComponent.LCSC == kicad_component.LCSC).one()
@@ -175,17 +174,18 @@ def query_lcsc(jlc_pid: str):
             for key, value in kicad_component.dict().items():
                 if value is not None:
                     setattr(existing_component, key, value)
+            session.commit()
+            session.refresh(existing_component)
+            return existing_component
+            
         except NoResultFound:
             # Component not found, add it
             session.add(kicad_component)
-
-        # Commit changes
-        session.commit()
-
-        # Refresh the component
-        session.refresh(kicad_component)
-
-    return kicad_component
+            # Commit changes
+            session.commit()
+            # Refresh the component
+            session.refresh(kicad_component)
+            return kicad_component
     
 #%%
 # make callable from the command line

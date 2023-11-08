@@ -25,13 +25,13 @@
                     "name": "MPN",
                     "visible_on_add": true,
                     "visible_in_chooser": true,
-                    "show_name": true,
+                    "show_name": false,
                     "inherit_properties": true
                 },
 				{
                     "column": "MFR",
                     "name": "MFR",
-                    "visible_on_add": true,
+                    "visible_on_add": false,
                     "visible_in_chooser": true,
                     "show_name": true,
                     "inherit_properties": true
@@ -39,7 +39,7 @@
 				{
                     "column": "LCSC",
                     "name": "LCSC",
-                    "visible_on_add": true,
+                    "visible_on_add": false,
                     "visible_in_chooser": true,
                     "show_name": true,
                     "inherit_properties": true
