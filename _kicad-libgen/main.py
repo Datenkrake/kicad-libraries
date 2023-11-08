@@ -91,7 +91,7 @@ class KiCADlibGen:
         # if at least one line contains the symbol name
         if len(symbol) > 0:
             symbol = symbol[0]
-            symbol = symbol[symbol.find("creating symbol ")+len("creating symbol "):symbol.find("_0_1")]
+            symbol = symbol[symbol.find("creating symbol ")+len("creating symbol "):symbol.find("")]
             symbol = symbol+":"+symbol
         else:
             symbol = None
@@ -106,8 +106,9 @@ class KiCADlibGen:
         footprint = [s for s in info if ".kicad_mod" in s]
         if len(footprint) > 0:
             footprint = footprint[0]
-            footprint = footprint[footprint.find("created ")+len("created "):-1].split(".kicad_mod")[-1]
-            footprint = "footprint:"+footprint
+            footprint = footprint[footprint.find("created ")+len("created "):-1].split("\n")[-1]
+            footprintfilename = footprint
+            footprint = "footprint:"+footprint[:-len('.kicad_mod')]
         else:
             footprint = None
 
@@ -134,7 +135,7 @@ class KiCADlibGen:
             # created 'JLC2KiCad_lib/footprint/LQFP-44_L10.0-W10.0-P0.80-LS12.0-BL.kicad_mod'\n
             
             # move .kicad_mod files from JLC2KiCad_lib to JLC2KiCad_lib/Library.pretty
-            os.system(f"mv JLC2KiCad_lib/footprint/{footprint}.kicad_mod JLC2KiCad_lib/Library.pretty/{footprint}.kicad_mod")
+            os.system(f"mv JLC2KiCad_lib/footprint/{footprintfilename} JLC2KiCad_lib/Library.pretty/{footprintfilename}")
 
         else:
             thingdict = None
