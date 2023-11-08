@@ -163,7 +163,7 @@ def query_lcsc(jlc_pid: str):
 
     with Session(engine) as session:
         try:
-            existing_component = session.query(KicadComponent).filter(KicadComponent.LCSC == kicad_component.LCSC).one()
+            existing_component = session.query(kicadmodel.KicadComponent).filter(kicadmodel.KicadComponent.LCSC == kicad_component.LCSC).one()
             
             # Component found, update attributes
             for key, value in kicad_component.dict().items():
