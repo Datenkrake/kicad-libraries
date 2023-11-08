@@ -111,6 +111,7 @@ class KiCADlibGen:
             footprintfilename = footprint
             footprint = footprint[:-len('.kicad_mod')]
             footprint = f'footprint:{footprint}'
+            os.system(f"mv JLC2KiCad_lib/footprint/{footprintfilename} JLC2KiCad_lib/Library.pretty/{footprintfilename}")
         else:
             footprint = None
 
@@ -137,7 +138,6 @@ class KiCADlibGen:
             # created 'JLC2KiCad_lib/footprint/LQFP-44_L10.0-W10.0-P0.80-LS12.0-BL.kicad_mod'\n
             
             # move .kicad_mod files from JLC2KiCad_lib to JLC2KiCad_lib/Library.pretty
-            os.system(f"mv JLC2KiCad_lib/footprint/{footprintfilename} JLC2KiCad_lib/Library.pretty/{footprintfilename}")
 
         else:
             thingdict = None
