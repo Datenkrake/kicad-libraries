@@ -54,9 +54,9 @@ jobs:
 
     - name: Move .kicad_mod files
       run: |
-        files=$(find JLC2KiCad_lib/footprints -maxdepth 1 -type f -name "*.kicad_mod")
+        files=$(find JLC2KiCad_lib/footprint -maxdepth 1 -type f -name "*.kicad_mod")
         if [ -n "$files" ]; then
-          mv $files JLC2KiCad_lib/footprints/Library.pretty/
+          mv $files JLC2KiCad_lib/footprint/Library.pretty/
         fi
       working-directory: ${{ github.workspace }}
 
