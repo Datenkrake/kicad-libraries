@@ -92,6 +92,7 @@ class KiCADlibGen:
         if len(symbol) > 0:
             symbol = symbol[0]
             symbol = symbol[symbol.find("creating symbol ")+len("creating symbol "):symbol.find(" in")]
+            symbol = symbol[:-2]
             symbol = f'{symbol}:{symbol}'
         else:
             symbol = None
