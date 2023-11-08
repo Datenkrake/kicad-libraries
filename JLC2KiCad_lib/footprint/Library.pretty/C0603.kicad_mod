@@ -1,4 +1,4 @@
-(module "C0603" (layer F.Cu) (tedit 654BEF15)
+(module "C0603" (layer F.Cu) (tedit 654BF3C1)
   (descr "C0603 footprint")
   (tags "C0603 footprint")
   (fp_text reference REF** (at -0.007722 -2.715443) (layer F.SilkS)
