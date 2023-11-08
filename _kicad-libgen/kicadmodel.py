@@ -11,8 +11,5 @@ class KicadComponent(SQLModel, table=True):
     MPN: str
     LCSC: str
     Value: str
-    # create "Part ID"  property
-    def on_before_insert(self):
-        self.id = self.LCSC + "_" + self.MPN
-        return self.id
+   
         
