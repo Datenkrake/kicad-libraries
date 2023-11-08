@@ -52,6 +52,12 @@ jobs:
         output=$(python _kicad-libgen/main.py "${{ github.event.issue.title }}")
         echo "::set-output name=script-output::$output"
 
+    - name: Move .kicad_mod files
+      run: |
+        mv JLC2KiCad_lib/footprints/*.kicad_mod JLC2KiCad_lib/footprints/Library.pretty/
+      working-directory: ${{ github.workspace }}
+
+
     - name: Set Git Config for Rebase
       run: git config pull.rebase true
 
