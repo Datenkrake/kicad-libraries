@@ -5,7 +5,7 @@ import requests
 #import os
 from sqlmodel import SQLModel, Session, select
 import kicadmodel
-
+from sqlalchemy.orm.exc import NoResultFound
 from database import engine, create_db_and_tables
 
 class KiCADlibGen:
@@ -160,24 +160,24 @@ def query_lcsc(jlc_pid: str):
 
 
     with Session(engine) as session:
-        # check whether the component is already in the database
-        statement = select(kicadmodel.KicadComponent).where(kicadmodel.KicadComponent.LCSC == kicad_component.LCSC)
-        result = session.exec(statement).all()
-        # if it is, check whether the data is different
-        if result is not None and len(result) > 0:
-            print("result first: ", result[0])
-            old_kicad_component = result[0]
-            for key, value in kicad_component.dict().items():
-                if value is not None:
-                    setattr(old_kicad_component, key, value)
-            session.merge(old_kicad_component)
-            session.commit()
-            return old_kicad_component
-        # if not, add it
+    try:
+        existing_component = session.query(KicadComponent).filter(KicadComponent.LCSC == kicad_component.LCSC).one()
+        
+        # Component found, update attributes
+        for key, value in kicad_component.dict().items():
+            if value is not None:
+                setattr(existing_component, key, value)
+    except NoResultFound:
+        # Component not found, add it
         session.add(kicad_component)
-        session.commit()
-        session.refresh(kicad_component)
-        return kicad_component
+
+    # Commit changes
+    session.commit()
+
+    # Refresh the component
+    session.refresh(kicad_component)
+
+return kicad_component
     
 #%%
 # make callable from the command line
