@@ -16,7 +16,7 @@
         {
             "name": "kicadcomponent",
             "table": "kicadcomponent",
-            "key": "id",
+            "key": "LCSC",
             "symbols": "Symbols",
             "footprints": "Footprints",
             "fields": [
@@ -53,9 +53,9 @@
                 }
             ],
             "properties": {
-                "description": "Description",
+                "description": "MPN",
                 "footprint_filters": "Footprint Filters",
-                "keywords": "Keywords",
+                "keywords": "Value",
                 "exclude_from_bom": "No BOM",
                 "exclude_from_board": "Schematic Only"
             }

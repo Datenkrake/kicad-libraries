@@ -111,7 +111,7 @@ class KiCADlibGen:
             footprintfilename = footprint
             footprint = footprint[:-len('.kicad_mod')]
             footprint = f'footprint:{footprint}'
-            os.system(f"mv JLC2KiCad_lib/footprint/{footprint}.kicad_mod JLC2KiCad_lib/Library.pretty/{footprint}.kicad_mo")
+            #os.system(f"mv JLC2KiCad_lib/footprint/{footprint}.kicad_mod JLC2KiCad_lib/Library.pretty/{footprint}.kicad_mo")
         else:
             footprint = None
 
