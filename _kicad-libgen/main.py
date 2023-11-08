@@ -2,7 +2,7 @@
 import subprocess
 import json
 import requests
-#import os
+import os
 from sqlmodel import SQLModel, Session, select
 import kicadmodel
 from sqlalchemy.orm.exc import NoResultFound
@@ -106,7 +106,7 @@ class KiCADlibGen:
         footprint = [s for s in info if ".kicad_mod" in s]
         if len(footprint) > 0:
             footprint = footprint[0]
-            footprint = footprint[footprint.find("created ")+len("created "):-1].split("/")[-1]
+            footprint = footprint[footprint.find("created ")+len("created "):-1].split(".kicad_mod")[-1]
             footprint = "footprint:"+footprint
         else:
             footprint = None
@@ -123,7 +123,7 @@ class KiCADlibGen:
                 "manufacturer": jlc2kicadlib[1]["brandNameEn"],
                 "manufacturer_part_number": jlc2kicadlib[1]["productModel"],
                 "LCSC Component Type": jlc2kicadlib[1]["catalogName"],
-                "LCSC Symbol": symbol,
+                "LCSC Symbol": symbolfile+":"+symbolfile,
                 "LCSC Symbol File": symbolfile,
                 "LCSC Footprint": footprint,
                 "LCSC 3D Model": model
@@ -133,6 +133,9 @@ class KiCADlibGen:
             # added JLC2KiCad_lib/footprint/packages3d/LQFP-44_L10.0-W10.0-P0.80-LS12.0-BL.step to footprint\n
             # created 'JLC2KiCad_lib/footprint/LQFP-44_L10.0-W10.0-P0.80-LS12.0-BL.kicad_mod'\n
             
+            # move .kicad_mod files from JLC2KiCad_lib to JLC2KiCad_lib/Library.pretty
+            os.system(f"mv JLC2KiCad_lib/footprint/{footprint}.kicad_mod JLC2KiCad_lib/Library.pretty/{footprint}.kicad_mod")
+
         else:
             thingdict = None
 
