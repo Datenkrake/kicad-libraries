@@ -91,7 +91,7 @@ class KiCADlibGen:
         # if at least one line contains the symbol name
         if len(symbol) > 0:
             symbol = symbol[0]
-            symbol = symbol[symbol.find("creating symbol ")+len("creating symbol "):symbol.find(" in")]
+            symbol = symbol[symbol.find("creating symbol ")+len("creating symbol "):symbol.find("_0_1")]
             symbol = symbol+":"+symbol
         else:
             symbol = None
@@ -123,7 +123,7 @@ class KiCADlibGen:
                 "manufacturer": jlc2kicadlib[1]["brandNameEn"],
                 "manufacturer_part_number": jlc2kicadlib[1]["productModel"],
                 "LCSC Component Type": jlc2kicadlib[1]["catalogName"],
-                "LCSC Symbol": symbolfile+":"+symbolfile,
+                "LCSC Symbol": symbol,
                 "LCSC Symbol File": symbolfile,
                 "LCSC Footprint": footprint,
                 "LCSC 3D Model": model
