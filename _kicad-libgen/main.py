@@ -92,7 +92,7 @@ class KiCADlibGen:
         if len(symbol) > 0:
             symbol = symbol[0]
             symbol = symbol[symbol.find("creating symbol ")+len("creating symbol "):symbol.find(" in")]
-            symbol = symbol+":"+symbol
+            symbol = f'{symbol}:{symbol}'
         else:
             symbol = None
 
@@ -108,7 +108,8 @@ class KiCADlibGen:
             footprint = footprint[0]
             footprint = footprint[footprint.find("created ")+len("created "):-1].split("/")[-1]
             footprintfilename = footprint
-            footprint = 'footprint:'+footprint[:-len('.kicad_mod')]
+            footprint = footprint[:-len('.kicad_mod')]
+            footprint = f'footprint:{footprint}'
         else:
             footprint = None
 
