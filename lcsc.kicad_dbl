@@ -6,7 +6,7 @@
     "description": "A database of LCSC components",
     "source": {
         "type": "odbc",
-        "dsn": "",
+        "dsn": "kicaddblib",
         "username": "",
         "password": "",
         "timeout_seconds": 2,
@@ -14,19 +14,31 @@
     },
     "libraries": [
         {
-            "name": "kicad components",
-            "table": "kicadcomponents",
-            "key": "id",
+            "name": "kicadcomponent",
+            "table": "kicadcomponent",
+            "key": "Part ID",
             "symbols": "Symbols",
             "footprints": "Footprints",
-            "MPN": "MPN",
-            "MFR": "MFR",
-            "LCSC": "LCSC",
-            "Value": "Value",
             "fields": [
                 {
                     "column": "MPN",
                     "name": "MPN",
+                    "visible_on_add": true,
+                    "visible_in_chooser": true,
+                    "show_name": true,
+                    "inherit_properties": true
+                },
+				{
+                    "column": "MFR",
+                    "name": "MFR",
+                    "visible_on_add": true,
+                    "visible_in_chooser": true,
+                    "show_name": true,
+                    "inherit_properties": true
+                },
+				{
+                    "column": "LCSC",
+                    "name": "LCSC",
                     "visible_on_add": true,
                     "visible_in_chooser": true,
                     "show_name": true,
