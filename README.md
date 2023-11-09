@@ -15,6 +15,6 @@ https://github.com/TousstNicolas/JLC2KiCad_lib
 # Hints
 - This works with the KiCad database library feature. The db.sqlite3 needs to be made available to KiCad via odbc. The .kicad_dbl file is in the repo.
 - To update symbols in kicad automatically, on windows, set symbolic link like this (to where your kicad-library repo is):
-mklink %userprofile%\AppData\Roaming\kicad\7.0\sym-lib-table “C:\kicad-libraries\sym-lib-table”
+```mklink %userprofile%\AppData\Roaming\kicad\7.0\sym-lib-table “C:\kicad-libraries\sym-lib-table”```
 - New Symbols will be added to sym-lib-table, active but hidden, so they appear in kicad automatically.
 - To pull the repo, kicad must be closed as the db.sqlite3 is locked otherwise, so the pull fails.
