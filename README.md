@@ -1,5 +1,6 @@
 # Description
-This repo contains all files to generate KiCad libraries from LCSC parts.
+This repo contains all files to generate KiCad libraries from LCSC parts triggered by creating an issue with the LCSC part id as title.<br>
+All files needed to use the library in KiCad are generated and provided in the repo as output, no need to even open KiCad to generate new libraries, everything happens here.
 
 # How to...
 1. Create an issue in the repo with a LCSC part id (e.g. C1005) or multiple (C1005,C1006,C1007)
@@ -14,7 +15,7 @@ https://github.com/TousstNicolas/JLC2KiCad_lib
 
 # Hints
 - This works with the KiCad database library feature. The db.sqlite3 needs to be made available to KiCad via odbc. The .kicad_dbl file is in the repo.
-- To update symbols in kicad automatically, on windows, set symbolic link like this (to where your kicad-library repo is):
+- To update symbols in kicad automatically, on windows, set symbolic link like this (to where your kicad-library repo is):<br>
 ```mklink %userprofile%\AppData\Roaming\kicad\7.0\sym-lib-table “C:\kicad-libraries\sym-lib-table”```
 - New Symbols will be added to sym-lib-table, active but hidden, so they appear in kicad automatically.
 - To pull the repo, kicad must be closed as the db.sqlite3 is locked otherwise, so the pull fails.
