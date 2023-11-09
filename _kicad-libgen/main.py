@@ -174,6 +174,35 @@ def query_jlcparts(jlc_pid: str):
 
     return thingdict
 
+def update_symlibtable(thingdict: dict):
+    name = thingdict["LCSC Symbol"]
+    type = "KiCad"
+    file = thingdict["LCSC Symbol"]+".kicad_sym"
+    visible = "hidden"
+    uri = "${KICAD7_SYMBOL_DIR}/"+file
+    # Specify the line you want to add
+    new_line = f'(lib (name "{name}")(type "{type}")(uri "{uri}")(options "")(descr "")({visible}))'
+    #new_line = '(lib (name "{name}")(type "{type}")(uri "'+"${KICAD7_SYMBOL_DIR}"+'/{file}")(options "")(descr "")({visible}))'
+    #new_line = '(lib (name "NewLibrary")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/new_library.kicad_sym")(options "")(descr "New library description")(disabled))'
+
+    # Read the existing file
+    with open('sym-lib-table', 'r') as file:
+        lines = file.readlines()
+
+    # Find the last enclosing bracket
+    for i in range(len(lines) - 1, -1, -1):
+        if lines[i].strip() == ')':
+            # Insert the new line before the last bracket
+            lines.insert(i, new_line + '\n')
+            break
+
+    # Add the last bracket back
+    lines.append(')')
+
+    # Write the updated content back to the file
+    with open('sym-lib-table', 'w') as file:
+        file.writelines(lines)
+
 
 kicadlibgen = KiCADlibGen()
 
@@ -210,7 +239,7 @@ def query_lcsc(jlc_pid: str):
                     setattr(existing_component, key, value)
             session.commit()
             session.refresh(existing_component)
-            return existing_component
+            kicad_component = existing_component
             
         except NoResultFound:
             # Component not found, add it
@@ -219,8 +248,10 @@ def query_lcsc(jlc_pid: str):
             session.commit()
             # Refresh the component
             session.refresh(kicad_component)
-            return kicad_component
-        
+
+    update_symlibtable(lcsc_data)
+    return kicad_component
+    
 
 def do_the_thing(jlc_pid: str):
     # check if the jlc_pid is a comma separated list
