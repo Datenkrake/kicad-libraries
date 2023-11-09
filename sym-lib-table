@@ -250,4 +250,5 @@
   (lib (name "SN74LS14NSR")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/SN74LS14NSR.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "FXL1350-100-M")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/FXL1350-100-M.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "TMS320F28034PNT")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/TMS320F28034PNT.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "B540C-13-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/B540C-13-F.kicad_sym")(options "")(descr "")(hidden))
 )
