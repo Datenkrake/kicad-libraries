@@ -198,7 +198,7 @@ def query_lcsc(jlc_pid: str):
     kicad_component.Subcategory = jlcparts_data["Subcategory"]
     kicad_component.Price = jlcparts_data["Price"]
 
-    kicad_component.uuid = f'{lcsc_data["MFR"]}_{lcsc_data["MPN"]}_{lcsc_data["LCSC_PID"]}'
+    kicad_component.uuid = f'{lcsc_data["manufacturer"]}_{lcsc_data["manufacturer_part_number"]}_{lcsc_data["LCSC_PID"]}'
     
 
     with Session(engine) as session:
