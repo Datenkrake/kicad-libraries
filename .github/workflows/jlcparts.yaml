@@ -13,11 +13,10 @@ jobs:
     - name: Checkout the repository
       uses: actions/checkout@v2
 
-    - name: Install 7z
+    - name: Install Git LFS
       run: |
-        sudo apt-get update
-        sudo apt-get install p7zip-full
-      working-directory: ${{ github.workspace }}
+        git lfs install
+        git lfs pull
 
     - name: Download Files
       run: wget https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8} || true
