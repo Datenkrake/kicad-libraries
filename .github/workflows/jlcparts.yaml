@@ -1,0 +1,42 @@
+name: Clone, Install, Execute, and Move (Daily)
+
+on:
+  workflow_dispatch:  # Allow manual triggering
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+
+jobs:
+  clone-install-execute:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Install 7z
+      run: |
+        sudo apt-get update
+        sudo apt-get install p7zip-full
+      working-directory: ${{ github.workspace }}
+      
+    - name: Clone the other repository
+      run: |
+        git clone https://github.com/yaqwsx/jlcparts.git jlcparts
+      working-directory: ${{ github.workspace }}
+
+    - name: Install and Execute Code
+      run: |
+        cd jlcparts
+
+        pip install -e .
+        wget https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8}
+        7z x cache.zip
+        
+      working-directory: ${{ github.workspace }}
+
+    - name: Commit and Push Changes
+      run: |
+        git add .
+        git commit -m "jlcparts cache db update"
+        git push
+      working-directory: ${{ github.workspace }}
