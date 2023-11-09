@@ -156,7 +156,7 @@ def query_jlcparts(jlc_pid: str):
     values = cursor.fetchall()
     # build a dictionary from the result of the query above and the column names in columns
     result = [dict(zip([column[1] for column in columns], value)) for value in values]
-    extra = json.loads(result["extra"])
+    extra = json.loads(result[0]["extra"])
 
     # create dict from result
     thingdict = {
@@ -198,7 +198,7 @@ def query_lcsc(jlc_pid: str):
     kicad_component.Category = jlcparts_data["Category"]
     kicad_component.Subcategory = jlcparts_data["Subcategory"]
     kicad_component.Price = jlcparts_data["Price"]
-
+    
 
     with Session(engine) as session:
         try:
