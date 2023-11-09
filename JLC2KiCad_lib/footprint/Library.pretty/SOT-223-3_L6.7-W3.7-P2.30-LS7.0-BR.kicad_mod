@@ -1,4 +1,4 @@
-(module "SOT-223-3_L6.7-W3.7-P2.30-LS7.0-BR" (layer F.Cu) (tedit 654AFDE9)
+(module "SOT-223-3_L6.7-W3.7-P2.30-LS7.0-BR" (layer F.Cu) (tedit 654C679D)
   (descr "SOT-223-3_L6.7-W3.7-P2.30-LS7.0-BR footprint")
   (tags "SOT-223-3_L6.7-W3.7-P2.30-LS7.0-BR footprint")
   (fp_text reference REF** (at 0 -5.326213) (layer F.SilkS)

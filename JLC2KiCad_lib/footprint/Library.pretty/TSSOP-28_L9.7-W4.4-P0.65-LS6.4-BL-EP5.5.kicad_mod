@@ -1,4 +1,4 @@
-(module "TSSOP-28_L9.7-W4.4-P0.65-LS6.4-BL-EP5.5" (layer F.Cu) (tedit 654BF6D0)
+(module "TSSOP-28_L9.7-W4.4-P0.65-LS6.4-BL-EP5.5" (layer F.Cu) (tedit 654C67CB)
   (descr "TSSOP-28_L9.7-W4.4-P0.65-LS6.4-BL-EP5.5 footprint")
   (tags "TSSOP-28_L9.7-W4.4-P0.65-LS6.4-BL-EP5.5 footprint")
   (fp_text reference REF** (at 0 -4.850013) (layer F.SilkS)

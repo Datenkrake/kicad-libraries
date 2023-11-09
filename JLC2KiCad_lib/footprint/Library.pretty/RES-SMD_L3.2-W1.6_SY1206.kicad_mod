@@ -1,4 +1,4 @@
-(module "RES-SMD_L3.2-W1.6_SY1206" (layer F.Cu) (tedit 654BF501)
+(module "RES-SMD_L3.2-W1.6_SY1206" (layer F.Cu) (tedit 654C67BF)
   (descr "RES-SMD_L3.2-W1.6_SY1206 footprint")
   (tags "RES-SMD_L3.2-W1.6_SY1206 footprint")
   (fp_text reference REF** (at 0 -3.07907) (layer F.SilkS)

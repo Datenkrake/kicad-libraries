@@ -1,4 +1,4 @@
-(module "TO-252-2_L6.5-W6.1-P4.56-LS9.9-BR-CW" (layer F.Cu) (tedit 654BF41F)
+(module "TO-252-2_L6.5-W6.1-P4.56-LS9.9-BR-CW" (layer F.Cu) (tedit 654C67BD)
   (descr "TO-252-2_L6.5-W6.1-P4.56-LS9.9-BR-CW footprint")
   (tags "TO-252-2_L6.5-W6.1-P4.56-LS9.9-BR-CW footprint")
   (fp_text reference REF** (at -0.572428 -5.335001) (layer F.SilkS)
