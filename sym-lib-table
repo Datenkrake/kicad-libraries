@@ -253,4 +253,6 @@
   (lib (name "B540C-13-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/B540C-13-F.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "WR06X5601FTL")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/WR06X5601FTL.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "RS-06FL7--0R02")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/RS-06FL7--0R02.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "HTU21D")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/HTU21D.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "SI7020-A20-GM1R")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/SI7020-A20-GM1R.kicad_sym")(options "")(descr "")(hidden))
 )
