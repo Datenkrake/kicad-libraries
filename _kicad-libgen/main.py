@@ -8,7 +8,7 @@ import kicadmodel
 from sqlalchemy.orm.exc import NoResultFound
 from database import engine, create_db_and_tables
 import sqlite3
-
+import pprint as pp
 
 class KiCADlibGen:
     # take a jlc_pid as input and generate a KiCAD lib file by calling JLC2KiCadlib with the jlc_pid
@@ -177,7 +177,6 @@ def query_lcsc(jlc_pid: str):
 
     #kicadlobgen = KiCADlibGen()
     lcsc_data = kicadlibgen.query_item(jlc_pid=jlc_pid, options="")
-    print(lcsc_data)
     if lcsc_data is None:
         return {"message": "not found"}
     # force lcsc_data to be a dict
@@ -220,6 +219,24 @@ def query_lcsc(jlc_pid: str):
             # Refresh the component
             session.refresh(kicad_component)
             return kicad_component
+        
+
+def do_the_thing(jlc_pid: str):
+    # check if the jlc_pid is a comma separated list
+    if "," in jlc_pid:
+        # split the list into a list of jlc_pid
+        jlc_pid = jlc_pid.split(",")
+        # loop through the list of jlc_pid
+        for jlc_pid in jlc_pid:
+            # query the jlc_pid
+            p = query_lcsc(jlc_pid)
+            pp.pprint(p)
+
+    else:
+        # query the jlc_pid
+        p = query_lcsc(jlc_pid)
+        pp.pprint(p)
+
     
 #%%
 # make callable from the command line
@@ -230,7 +247,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Query the LCSC database")
     parser.add_argument("jlc_pid", type=str, help="JLCPCB part #")
     args = parser.parse_args()
-    query_lcsc(args.jlc_pid)
+    do_the_thing(args.jlc_pid)
 
 
 #%%
