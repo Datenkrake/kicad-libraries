@@ -175,7 +175,7 @@ def query_jlcparts(jlc_pid: str):
     return thingdict
 
 def update_symlibtable(thingdict: dict):
-    name = thingdict["LCSC Symbol"]
+    name = thingdict["LCSC Symbol"].split(":")[0]
     type = "KiCad"
     file = thingdict["LCSC Symbol"]+".kicad_sym"
     visible = "hidden"
@@ -197,7 +197,7 @@ def update_symlibtable(thingdict: dict):
             break
 
     # Add the last bracket back
-    lines.append(')')
+    #lines.append(')')
 
     # Write the updated content back to the file
     with open('sym-lib-table', 'w') as file:
