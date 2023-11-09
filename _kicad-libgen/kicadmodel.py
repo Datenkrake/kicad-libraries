@@ -18,6 +18,7 @@ class KicadComponent(SQLModel, table=True):
     Category: str
     Subcategory: str
     Price: str
+    uuid: str
 
     def on_create(self):
         self.id = None  # It will be auto-incremented
