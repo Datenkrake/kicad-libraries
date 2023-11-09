@@ -13,11 +13,6 @@ jobs:
     - name: Checkout the repository
       uses: actions/checkout@v2
 
-    - name: Install Git LFS
-      run: |
-        git lfs install
-        git lfs pull
-
     - name: Download Files
       run: wget https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8} || true
       working-directory: ${{ github.workspace }}
