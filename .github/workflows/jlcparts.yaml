@@ -19,11 +19,13 @@ jobs:
         sudo apt-get install p7zip-full
       working-directory: ${{ github.workspace }}
 
-    - name: Install and Execute Code
+    - name: Download Files
       run: |
-        wget -nc --continue https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8}
+        files=("https://yaqwsx.github.io/jlcparts/data/cache.zip" "https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8}")
+        for file in "${files[@]}"; do
+          wget -nc "$file"
+        done
         7z x cache.zip
-        
       working-directory: ${{ github.workspace }}
 
     - name: Commit and Push Changes
