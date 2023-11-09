@@ -19,6 +19,9 @@ class KicadComponent(SQLModel, table=True):
     Subcategory: str
     Price: str
 
+    def on_before_insert(self):
+        self.id = f'{self.LCSC} _{self.MPN}'
+        return self.id
 
     
 
