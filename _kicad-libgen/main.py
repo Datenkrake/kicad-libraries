@@ -7,6 +7,8 @@ from sqlmodel import SQLModel, Session, select
 import kicadmodel
 from sqlalchemy.orm.exc import NoResultFound
 from database import engine, create_db_and_tables
+import sqlite3
+
 
 class KiCADlibGen:
     # take a jlc_pid as input and generate a KiCAD lib file by calling JLC2KiCadlib with the jlc_pid
@@ -144,6 +146,29 @@ class KiCADlibGen:
 
         return thingdict
 
+def query_jlcparts(jlc_pid: str):
+    con = sqlite3.connect("cache.sqlite3")
+    cursor = con.cursor()
+    cursor.execute(f"PRAGMA table_info(components)")
+    columns = cursor.fetchall()
+    statement = f"SELECT * FROM components WHERE lcsc = '{jlc_pid}'"
+    cursor.execute(statement)
+    values = cursor.fetchall()
+    # build a dictionary from the result of the query above and the column names in columns
+    result = [dict(zip([column[1] for column in columns], value)) for value in values]
+    extra = json.loads(result[0]["extra"])
+
+    # create dict from result
+    thingdict = {
+        "LCSC_PID": extra['number'],
+        'Datasheet': result[0]['datasheet'],
+        'Description': result[0]['description'],
+        'Stock': result[0]['stock'],
+        'Category': extra['category']['name1'],
+        'Subcategory': extra['category']['name2'],
+        'Price': extra['prices'][0]['price'],
+    }
+    return thingdict
 
 
 kicadlibgen = KiCADlibGen()
@@ -165,6 +190,15 @@ def query_lcsc(jlc_pid: str):
     kicad_component.Value = lcsc_data["LCSC Component Type"]
     kicad_component.Symbols = lcsc_data["LCSC Symbol"]
     kicad_component.Footprints = lcsc_data["LCSC Footprint"]
+
+    jlcparts_data = query_jlcparts(jlc_pid)
+    kicad_component.Datasheet = jlcparts_data["Datasheet"]
+    kicad_component.Description = jlcparts_data["Description"]
+    kicad_component.Stock = jlcparts_data["Stock"]
+    kicad_component.Category = jlcparts_data["Category"]
+    kicad_component.Subcategory = jlcparts_data["Subcategory"]
+    kicad_component.Price = jlcparts_data["Price"]
+    
 
     with Session(engine) as session:
         try:
