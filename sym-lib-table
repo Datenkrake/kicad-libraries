@@ -258,4 +258,6 @@
   (lib (name "X6511FV-24-C85D32")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/X6511FV-24-C85D32.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "DHT11")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/DHT11.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "K7803-500R3")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/K7803-500R3.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "CL31A106KBHNNNE")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL31A106KBHNNNE.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "CL10A226MP8NUNE")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL10A226MP8NUNE.kicad_sym")(options "")(descr "")(hidden))
 )
