@@ -21,10 +21,7 @@ jobs:
 
     - name: Download Files
       run: |
-        files=("https://yaqwsx.github.io/jlcparts/data/cache.zip" "https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8}")
-        for file in "${files[@]}"; do
-          wget -nc "$file"
-        done
+        wget -nc -q https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8}
         7z x cache.zip
       working-directory: ${{ github.workspace }}
 
