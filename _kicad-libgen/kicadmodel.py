@@ -20,7 +20,7 @@ class KicadComponent(SQLModel, table=True):
     Price: str
 
     def on_before_insert(self):
-        self.id = f'{self.LCSC} _{self.MPN}'
+        self.id = self.LCSC
         return self.id
 
     
