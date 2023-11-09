@@ -256,4 +256,5 @@
   (lib (name "HTU21D")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/HTU21D.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "SI7020-A20-GM1R")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/SI7020-A20-GM1R.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "X6511FV-24-C85D32")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/X6511FV-24-C85D32.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "DHT11")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/DHT11.kicad_sym")(options "")(descr "")(hidden))
 )
