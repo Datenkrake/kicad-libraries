@@ -4,7 +4,7 @@ from datetime import datetime
 
 class KicadComponent(SQLModel, table=True):
     #__tablename__ = "kicadcomponent"
-    id: Optional[str] = Field(default=None, primary_key=True)
+    id: Optional[int] = Field(default=None, primary_key=True)
 
     Symbols: str
     Footprints: str
@@ -19,9 +19,12 @@ class KicadComponent(SQLModel, table=True):
     Subcategory: str
     Price: str
 
+    def on_create(self):
+        self.id = None  # It will be auto-incremented
+
     def on_before_insert(self):
-        self.id = self.LCSC
-        return self.id
+        return self
+
 
     
 
