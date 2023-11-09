@@ -175,33 +175,30 @@ def query_jlcparts(jlc_pid: str):
     return thingdict
 
 def update_symlibtable(thingdict: dict):
-    name = thingdict["LCSC Symbol"].split(":")[0]
-    type = "KiCad"
-    file = name+".kicad_sym"
-    visible = "hidden"
-    uri = "${KICAD7_SYMBOL_DIR}/"+file
-    # Specify the line you want to add
-    new_line = f'  (lib (name "{name}")(type "{type}")(uri "{uri}")(options "")(descr "")({visible}))'
-    #new_line = '(lib (name "{name}")(type "{type}")(uri "'+"${KICAD7_SYMBOL_DIR}"+'/{file}")(options "")(descr "")({visible}))'
-    #new_line = '(lib (name "NewLibrary")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/new_library.kicad_sym")(options "")(descr "New library description")(disabled))'
+    if thingdict["LCSC Symbol"] is not None:
+        name = thingdict["LCSC Symbol"].split(":")[0]
+        type = "KiCad"
+        file = name+".kicad_sym"
+        visible = "hidden"
+        uri = "${KICAD7_SYMBOL_DIR}/"+file
+        # Specify the line you want to add
+        new_line = f'  (lib (name "{name}")(type "{type}")(uri "{uri}")(options "")(descr "")({visible}))'
 
-    # Read the existing file
-    with open('sym-lib-table', 'r') as file:
-        lines = file.readlines()
+        # Read the existing file
+        with open('sym-lib-table', 'r') as file:
+            lines = file.readlines()
 
-    # Find the last enclosing bracket
-    for i in range(len(lines) - 1, -1, -1):
-        if lines[i].strip() == ')':
-            # Insert the new line before the last bracket
-            lines.insert(i, new_line + '\n')
-            break
+        # Find the last enclosing bracket
+        for i in range(len(lines) - 1, -1, -1):
+            if lines[i].strip() == ')':
+                # Insert the new line before the last bracket
+                lines.insert(i, new_line + '\n')
+                break
 
-    # Add the last bracket back
-    #lines.append(')')
-
-    # Write the updated content back to the file
-    with open('sym-lib-table', 'w') as file:
-        file.writelines(lines)
+        # Write the updated content back to the file
+        with open('sym-lib-table', 'w') as file:
+            file.writelines(lines)
+    return
 
 
 kicadlibgen = KiCADlibGen()
