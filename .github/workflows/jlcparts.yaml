@@ -31,6 +31,7 @@ jobs:
       run: |
         git config --global user.email "refried08oatmeal@icloud.com"
         git config --global user.name "Datenkrake"
+        git pull
         git add .
         git commit -m "jlcparts cache db update"
         git push
