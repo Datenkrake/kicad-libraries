@@ -156,32 +156,31 @@ def query_jlcparts(jlc_pid: str):
     values = cursor.fetchall()
     # build a dictionary from the result of the query above and the column names in columns
     result = [dict(zip([column[1] for column in columns], value)) for value in values]
-    extra = json.loads(result[0]["extra"])
+    try:
+        extra = json.loads(result[0]["extra"])
 
-    # create dict from result
-    thingdict = {
-        "LCSC_PID": extra['number'],
-        'Datasheet': result[0]['datasheet'],
-        'Description': result[0]['description'],
-        'Stock': result[0]['stock'],
-        'Category': extra['category']['name1'],
-        'Subcategory': extra['category']['name2'],
-        'Price': extra['prices'][0]['price'],
-    }
+        # create dict from result
+        thingdict = {
+            "LCSC_PID": extra['number'],
+            'Datasheet': result[0]['datasheet'],
+            'Description': result[0]['description'],
+            'Stock': result[0]['stock'],
+            'Category': extra['category']['name1'],
+            'Subcategory': extra['category']['name2'],
+            'Price': extra['prices'][0]['price'],
+        }
+    except:
+        thingdict = None
+
     return thingdict
 
 
 kicadlibgen = KiCADlibGen()
 
 def query_lcsc(jlc_pid: str):
-
-    #kicadlobgen = KiCADlibGen()
     lcsc_data = kicadlibgen.query_item(jlc_pid=jlc_pid, options="")
     if lcsc_data is None:
         return {"message": "not found"}
-    # force lcsc_data to be a dict
-    #lcsc_data = json.loads(lcsc_data)
-    # create a kicad_model.KicadComponent object from the dict, mapping each field to a key
     kicad_component = kicadmodel.KicadComponent()
     kicad_component.LCSC = lcsc_data["LCSC_PID"]
     kicad_component.MFR = lcsc_data["manufacturer"]
@@ -191,15 +190,15 @@ def query_lcsc(jlc_pid: str):
     kicad_component.Footprints = lcsc_data["LCSC Footprint"]
 
     jlcparts_data = query_jlcparts(jlc_pid)
-    kicad_component.Datasheet = jlcparts_data["Datasheet"]
-    kicad_component.Description = jlcparts_data["Description"]
-    kicad_component.Stock = jlcparts_data["Stock"]
-    kicad_component.Category = jlcparts_data["Category"]
-    kicad_component.Subcategory = jlcparts_data["Subcategory"]
-    kicad_component.Price = jlcparts_data["Price"]
+    if jlcparts_data is not None:
+        kicad_component.Datasheet = jlcparts_data["Datasheet"]
+        kicad_component.Description = jlcparts_data["Description"]
+        kicad_component.Stock = jlcparts_data["Stock"]
+        kicad_component.Category = jlcparts_data["Category"]
+        kicad_component.Subcategory = jlcparts_data["Subcategory"]
+        kicad_component.Price = jlcparts_data["Price"]
 
     kicad_component.uuid = f'{lcsc_data["manufacturer"]}_{lcsc_data["manufacturer_part_number"]}_{lcsc_data["LCSC_PID"]}'
-    
 
     with Session(engine) as session:
         try:

@@ -16,7 +16,7 @@
         {
             "name": "kicadcomponent",
             "table": "kicadcomponent",
-            "key": "LCSC",
+            "key": "uuid",
             "symbols": "Symbols",
             "footprints": "Footprints",
             "fields": [
