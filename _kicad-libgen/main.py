@@ -151,7 +151,7 @@ def query_jlcparts(jlc_pid: str):
     cursor = con.cursor()
     cursor.execute(f"PRAGMA table_info(components)")
     columns = cursor.fetchall()
-    statement = f"SELECT * FROM components WHERE lcsc = '{jlc_pid}'"
+    statement = f"SELECT * FROM components WHERE lcsc = '{jlc_pid[1:]}'"
     cursor.execute(statement)
     values = cursor.fetchall()
     # build a dictionary from the result of the query above and the column names in columns
