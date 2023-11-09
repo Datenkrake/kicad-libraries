@@ -4,4 +4,4 @@ Using this work to get LCSC part catalog:
 https://github.com/yaqwsx/jlcparts
 
 and this one to pull converted library files:
-https://github.com/TousstNicolas/JLC2KiCad_lib# kicad-libraries
+https://github.com/TousstNicolas/JLC2KiCad_lib
