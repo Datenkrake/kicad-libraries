@@ -20,7 +20,7 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Download Files
-      run: wget -nc -q https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8} || true
+      run: wget https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8} || true
       working-directory: ${{ github.workspace }}
 
     - name: Unzip Files
