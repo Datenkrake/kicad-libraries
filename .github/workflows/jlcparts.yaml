@@ -1,4 +1,4 @@
-name: Clone, Install, Execute, and Move (Daily)
+name: Fetch JLC Parts Database (Daily)
 
 on:
   workflow_dispatch:  # Allow manual triggering
