@@ -177,11 +177,11 @@ def query_jlcparts(jlc_pid: str):
 def update_symlibtable(thingdict: dict):
     name = thingdict["LCSC Symbol"].split(":")[0]
     type = "KiCad"
-    file = thingdict["LCSC Symbol"]+".kicad_sym"
+    file = name+".kicad_sym"
     visible = "hidden"
     uri = "${KICAD7_SYMBOL_DIR}/"+file
     # Specify the line you want to add
-    new_line = f'(lib (name "{name}")(type "{type}")(uri "{uri}")(options "")(descr "")({visible}))'
+    new_line = f'  (lib (name "{name}")(type "{type}")(uri "{uri}")(options "")(descr "")({visible}))'
     #new_line = '(lib (name "{name}")(type "{type}")(uri "'+"${KICAD7_SYMBOL_DIR}"+'/{file}")(options "")(descr "")({visible}))'
     #new_line = '(lib (name "NewLibrary")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/new_library.kicad_sym")(options "")(descr "New library description")(disabled))'
 

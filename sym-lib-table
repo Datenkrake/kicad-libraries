@@ -249,7 +249,4 @@
   (lib (name "LM331M_TR")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/LM331M_TR.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "SN74LS14NSR")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/SN74LS14NSR.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "FXL1350-100-M")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/FXL1350-100-M.kicad_sym")(options "")(descr "")(hidden))
-(lib (name "TPS767D301PWP:TPS767D301PWP")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/TPS767D301PWP:TPS767D301PWP.kicad_sym")(options "")(descr "")(hidden))
-)
-(lib (name "BM81810MUV-ME2")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BM81810MUV-ME2:BM81810MUV-ME2.kicad_sym")(options "")(descr "")(hidden))
 )
