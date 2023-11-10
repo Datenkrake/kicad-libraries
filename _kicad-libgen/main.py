@@ -201,21 +201,20 @@ def update_symlibtable(thingdict: dict):
     return
 
 def update_kicadmod_model(filename):
-    file_path = f'JLC2KiCad_lib/footprint/packages3d/{filename}'  # Replace with the path to your KiCad file
-
     # Read the file and store its content in a list
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
+    with open(f'JLC2KiCad_lib/footprint/Library.pretty/{filename}', 'r') as f:
+        lines = f.readlines()
 
-    # Search for the line containing the model path
+    # for each line in the file
     for i, line in enumerate(lines):
-        if f'(model {file_path}' in line:
-            # Modify the line
-            lines[i] = f'(model {filename}\n'
-
-    # Write the modified content back to the file
-    with open(file_path, 'w') as file:
-        file.writelines(lines)
+        if '(model JLC2KiCad_lib/footprint/packages3d/' in line:
+            lines[i] = lines[i].replace('JLC2KiCad_lib/footprint/packages3d/', '')
+        
+    # Write the modified lines to a new file
+    with open(f'JLC2KiCad_lib/footprint/Library.pretty/{filename}', 'w') as f:
+        f.writelines(lines)
+    
+    return
 
 
 kicadlibgen = KiCADlibGen()
@@ -233,7 +232,7 @@ def query_lcsc(jlc_pid: str):
     kicad_component.Footprints = lcsc_data["LCSC Footprint"]
     kicad_component.uuid = f'{lcsc_data["manufacturer"]}_{lcsc_data["manufacturer_part_number"]}_{lcsc_data["LCSC_PID"]}'
     # fix model path in footprint file to make it relative
-    update_kicadmod_model(lcsc_data['LCSC 3D Model'])
+    update_kicadmod_model(f'{lcsc_data['LCSC Footprint']}.kicad_mod')
 
     jlcparts_data = query_jlcparts(jlc_pid)
     if jlcparts_data is not None:
