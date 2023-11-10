@@ -34,7 +34,7 @@
   (fp_text user REF** (at 0 6.865761) (layer F.Fab)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (model JLC2KiCad_lib/footprint/packages3d/TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL.step
+  (model TSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL.step
     (at (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

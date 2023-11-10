@@ -26,7 +26,7 @@
   (fp_text user REF** (at -0.572428 7.335001) (layer F.Fab)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (model JLC2KiCad_lib/footprint/packages3d/TO-252-2_L6.5-W6.1-P4.56-LS9.9-BR-CW.step
+  (model TO-252-2_L6.5-W6.1-P4.56-LS9.9-BR-CW.step
     (at (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

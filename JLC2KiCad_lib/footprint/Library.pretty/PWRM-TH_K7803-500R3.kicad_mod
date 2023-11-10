@@ -18,7 +18,7 @@
   (fp_text user REF** (at 0 6.286005) (layer F.Fab)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (model JLC2KiCad_lib/footprint/packages3d/PWRM-TH_K7803-500R3.step
+  (model PWRM-TH_K7803-500R3.step
     (at (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))

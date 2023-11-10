@@ -3,3 +3,4 @@
 *.pyc
 *cache.z*
 *cache.sqlite3
+venv*

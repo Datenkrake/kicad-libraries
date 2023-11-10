@@ -32,7 +32,7 @@
   (fp_text user REF** (at 0 7.565405) (layer F.Fab)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (model JLC2KiCad_lib/footprint/packages3d/SOIC-14_L10.0-W5.5-P1.27-LS7.8-BL.step
+  (model SOIC-14_L10.0-W5.5-P1.27-LS7.8-BL.step
     (at (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))
