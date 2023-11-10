@@ -260,4 +260,5 @@
   (lib (name "K7803-500R3")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/K7803-500R3.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "CL31A106KBHNNNE")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL31A106KBHNNNE.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "CL10A226MP8NUNE")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL10A226MP8NUNE.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "TPS767D301PWP")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/TPS767D301PWP.kicad_sym")(options "")(descr "")(hidden))
 )
