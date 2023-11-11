@@ -279,4 +279,5 @@
   (lib (name "430450613")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/430450613.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "430450412")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/430450412.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "BSS123-7-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BSS123-7-F.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "BSS123-7-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BSS123-7-F.kicad_sym")(options "")(descr "")(hidden))
 )
