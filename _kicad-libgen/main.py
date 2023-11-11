@@ -106,6 +106,7 @@ if __name__ == "__main__":
         results.append(p)
 
     # cast the results to a string
-    results = str(results)
-    print(f"::set-output name=script-output::{results}")
+    results_encoded = base64.b64encode(results.encode()).decode()
+
+    print(f"::set-output name=script-output::{results_encoded}")
     #print(results)
