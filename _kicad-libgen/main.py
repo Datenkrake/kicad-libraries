@@ -114,7 +114,7 @@ if __name__ == "__main__":
     results_json = json.dumps(results_dicts)
 
     # encode the JSON string in Base64 format
-    results_encoded = base64.b64encode(results_json.encode()).decode()
+    # results_encoded = base64.b64encode(results_json.encode()).decode()
 
-    print(f"::set-output name=script-output::{results_encoded}")
+    print(f"::set-output name=script-output::{results_json}")
 
