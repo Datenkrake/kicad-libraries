@@ -1,4 +1,4 @@
-(module "SOT-353-5_L2.0-W1.3-P0.65-TL" (layer F.Cu) (tedit 654F269B)
+(module "SOT-353-5_L2.0-W1.3-P0.65-TL" (layer F.Cu) (tedit 654F27E6)
   (descr "SOT-353-5_L2.0-W1.3-P0.65-TL footprint")
   (tags "SOT-353-5_L2.0-W1.3-P0.65-TL footprint")
   (fp_text reference REF** (at 0 -3.142926) (layer F.SilkS)
