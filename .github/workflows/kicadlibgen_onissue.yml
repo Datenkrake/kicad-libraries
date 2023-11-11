@@ -43,6 +43,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r _kicad-libgen/requirements.txt
 
+    - name: Install jq
+      run: sudo apt-get install -y jq
+
     - name: Download Files
       run: wget https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8} || true
       working-directory: ${{ github.workspace }}
@@ -96,19 +99,19 @@ jobs:
         commit_sha="${{ steps.commit-and-push.outputs.commit-sha }}"
         commit_link="https://github.com/${{ github.repository }}/commit/$commit_sha"
         echo "::set-output name=commit-output::$commit_link"
-        
+
     - name: Comment on the issue
       run: |
         issue_number=${{ github.event.issue.number }}  # Replace with the actual issue number
-        comment="${{ steps.run-script.outputs.script-output }} Commit Link: ${{ steps.get-commit-link.outputs.commit-output }}"
-  
+        comment=$(echo "${{ steps.run-script.outputs.script-output }}" | jq -R .)
+        commit_link=$(echo "${{ steps.get-commit-link.outputs.commit-output }}" | jq -R .)
+        body=$(echo "$comment Commit Link: $commit_link" | jq -R .)
+        json_body=$(jq -n --arg body "$body" '{body: $body}')
+      
         curl -X POST \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
-          -d '{
-            "body": "'"$comment"'"
-          }' \
+          -d "$json_body" \
           "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments"
-
-
+          
         
