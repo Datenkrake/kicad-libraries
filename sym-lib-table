@@ -289,4 +289,5 @@
   (lib (name "BAV99-7-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BAV99-7-F.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "BCR133E6327HTSA1")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BCR133E6327HTSA1.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "PUMD13,135")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/PUMD13,135.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "PUMB18,115")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/PUMB18,115.kicad_sym")(options "")(descr "")(hidden))
 )
