@@ -105,14 +105,13 @@ jobs:
         issue_number=${{ github.event.issue.number }}  # Replace with the actual issue number
         comment=$(echo "${{ steps.run-script.outputs.script-output }}" | jq -R .)
         commit_link=$(echo "${{ steps.get-commit-link.outputs.commit-output }}" | jq -R .)
+        body=$(echo "$comment Commit Link: $commit_link" | jq -R .)
+        json_body=$(jq -n --arg body "$body" '{body: $body}')
       
         curl -X POST \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
-          -d '{
-            "body": '"$comment Commit Link: $commit_link"'
-          }' \
+          -d "$json_body" \
           "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments"
-      
-
+          
         
