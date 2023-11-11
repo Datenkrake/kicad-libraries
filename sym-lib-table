@@ -292,4 +292,5 @@
   (lib (name "PUMB18,115")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/PUMB18,115.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "TJA1042T_3_1J")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/TJA1042T_3_1J.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "TJA1042T_3_1J")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/TJA1042T_3_1J.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "BCR133WH6327XTSA1")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BCR133WH6327XTSA1.kicad_sym")(options "")(descr "")(hidden))
 )
