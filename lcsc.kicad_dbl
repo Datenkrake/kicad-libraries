@@ -85,12 +85,40 @@
                     "visible_on_add": false,
                     "visible_in_chooser": true,
                     "show_name": false
+                },
+                {
+                    "column": "value1",
+                    "name": "Value 1",
+                    "visible_on_add": true,
+                    "visible_in_chooser": true,
+                    "show_name": false
+                },
+                {
+                    "column": "value2",
+                    "name": "Value 2",
+                    "visible_on_add": true,
+                    "visible_in_chooser": true,
+                    "show_name": false
+                },
+                {
+                    "column": "value3",
+                    "name": "Value 3",
+                    "visible_on_add": true,
+                    "visible_in_chooser": true,
+                    "show_name": false
+                },
+                {
+                    "column": "value4",
+                    "name": "Value 4",
+                    "visible_on_add": true,
+                    "visible_in_chooser": true,
+                    "show_name": false
                 }
             ],
             "properties": {
                 "description": "Description",
                 "footprint_filters": "Footprint Filters",
-                "keywords": "Value",
+                "keywords": "Category",
                 "exclude_from_bom": "No BOM",
                 "exclude_from_board": "Schematic Only"
             }
