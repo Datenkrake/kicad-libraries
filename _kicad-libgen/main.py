@@ -3,7 +3,6 @@ import kicadmodel
 from sqlalchemy.orm.exc import NoResultFound
 from database import engine
 import pprint as pp
-import json
 
 from libgen import query_item
 from jlcquery import query_jlcparts
@@ -106,5 +105,5 @@ if __name__ == "__main__":
         p = do_the_thing(jlc_pid)
         results.append(p)
 
-    print(f"::set-output name=script-output::{json.dumps(results)}")
+    print(f"::set-output name=script-output::{results}")
     #print(results)
