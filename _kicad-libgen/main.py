@@ -105,5 +105,7 @@ if __name__ == "__main__":
         p = do_the_thing(jlc_pid)
         results.append(p)
 
+    # cast the results to a string
+    results = str(results)
     print(f"::set-output name=script-output::{results}")
     #print(results)
