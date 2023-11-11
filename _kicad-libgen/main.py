@@ -5,6 +5,7 @@ from database import engine
 import pprint as pp
 import base64
 import json
+import shlex
 
 from libgen import query_item
 from jlcquery import query_jlcparts
@@ -117,7 +118,8 @@ if __name__ == "__main__":
 
     # encode the JSON string in Base64 format
     # results_encoded = base64.b64encode(results_json.encode()).decode()
-    results_string = str(results_json)
+    results_string = shlex.quote(str(results_json))
+
     print(results_string)
     print(f"::set-output name=script-output::{results_string}")
 
