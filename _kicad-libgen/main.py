@@ -105,4 +105,5 @@ if __name__ == "__main__":
         p = do_the_thing(jlc_pid)
         results.append(p)
 
-    print(results)
+    print(f"::set-output name=script-output::{json.dumps(results)}")
+    #print(results)
