@@ -1,10 +1,10 @@
-name: Bug Report
-description: File a bug report
-title: "[Bug]: "
-labels: ["bug", "triage"]
-projects: ["octo-org/1", "octo-org/44"]
+name: KiCad Library
+description: Create or edit a KiCad Library
+title: "[KiCad]: "
+labels: ["library"]
+projects: []
 assignees:
-  - octocat
+  
 body:
   - type: markdown
     attributes:
