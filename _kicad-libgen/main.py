@@ -107,11 +107,14 @@ if __name__ == "__main__":
         p = do_the_thing(jlc_pid)
         results.append(p)
 
-    # cast the results to a string
-    results_dict = results.to_dict()
+    # convert each KicadComponent object in the list to a dictionary
+    results_dicts = [result.to_dict() for result in results]
 
-    results_json = json.dumps(results_dict)
+    # convert the list of dictionaries to a JSON string
+    results_json = json.dumps(results_dicts)
+
+    # encode the JSON string in Base64 format
     results_encoded = base64.b64encode(results_json.encode()).decode()
 
     print(f"::set-output name=script-output::{results_encoded}")
-    #print(results)
+
