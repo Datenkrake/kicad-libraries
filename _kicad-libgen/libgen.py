@@ -5,7 +5,7 @@ import json
 
 # take a jlc_pid as input and generate a KiCAD lib file by calling JLC2KiCadlib with the jlc_pid
 #def query_item(self, jlc_pid, options = []):
-def query_item(self, jlc_pid, options = []):
+def query_item(jlc_pid, options = []):
     '''
     take a JLCPCB part # and create the according component's kicad's library
 
@@ -40,7 +40,6 @@ def query_item(self, jlc_pid, options = []):
             python3 JLC2KiCad_lib.py C1337258 C24112 -dir My_lib -symbol_lib My_Symbol_lib --no_footprint
     return: response from JLC2KiCadLib stdout, productModel, brandNameEn, catalogName, lcsc_url
     '''
-    self.jlc_pid = jlc_pid
     # buuild the command
     command = [
         "python3",  # The Python interpreter
