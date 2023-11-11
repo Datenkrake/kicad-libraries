@@ -42,7 +42,7 @@ def do_the_thing(jlc_pid: str):
         # find the values in the description
         values = find_values(jlcparts_data)
         # update the kicad component with the values
-        kicad_component.Value = f"{values["value1"], values["value2"], values["value3"], values["value4"]}"
+        kicad_component.Value = f"{values['value1'], values['value2'], values['value3'], values['value4']}"
         kicad_component.value1 = values["value1"]
         kicad_component.value2 = values["value2"]
         kicad_component.value3 = values["value3"]
