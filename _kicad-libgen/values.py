@@ -6,7 +6,7 @@ def find_values(jlcparts_data: dict):
 
     description = jlcparts_data["Description"]
     if description is None:
-        continue
+        return None
     # split the description by ' '
     description = description.split(" ")
     # find list items that contain capital V
