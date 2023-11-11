@@ -74,6 +74,7 @@ jobs:
       run: git config pull.rebase true
 
     - name: Commit and push changes to main
+      id: commit-and-push
       run: |
         comment="${{ github.event.issue.title }}"
         
@@ -84,11 +85,15 @@ jobs:
         git commit -m "$comment"  # Commit changes with a message
         git pull # pull latest changes
         git push  # Push changes to the main branch
+
+        commit_sha=$(git rev-parse HEAD)
+        echo "::set-output name=commit-sha::$commit_sha"
+
         
     - name: Get commit link
       id: get-commit-link
       run: |
-        commit_sha="${{ github.sha }}"
+        commit_sha="${{ steps.commit-and-push.outputs.commit-sha }}"
         commit_link="https://github.com/${{ github.repository }}/commit/$commit_sha"
         echo "::set-output name=commit-output::$commit_link"
         
