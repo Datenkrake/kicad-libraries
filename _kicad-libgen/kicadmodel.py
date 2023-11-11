@@ -30,6 +30,27 @@ class KicadComponent(SQLModel, table=True):
     def on_before_insert(self):
         return self
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "Symbols": self.Symbols,
+            "Footprints": self.Footprints,
+            "MFR": self.MFR,
+            "MPN": self.MPN,
+            "LCSC": self.LCSC,
+            "Value": self.Value,
+            "Datasheet": self.Datasheet,
+            "Description": self.Description,
+            "Stock": self.Stock,
+            "Category": self.Category,
+            "Subcategory": self.Subcategory,
+            "Price": self.Price,
+            "uuid": self.uuid,
+            "value1": self.value1,
+            "value2": self.value2,
+            "value3": self.value3,
+            "value4": self.value4
+        }
 
     
 
