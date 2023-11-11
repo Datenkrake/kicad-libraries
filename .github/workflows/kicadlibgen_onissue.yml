@@ -86,15 +86,16 @@ jobs:
         git push  # Push changes to the main branch
         
     - name: Get commit link
+      id: get-commit-link
       run: |
         commit_sha="${{ github.sha }}"
         commit_link="https://github.com/${{ github.repository }}/commit/$commit_sha"
-        echo "Commit Link: $commit_link"
-
+        echo "::set-output name=commit-output::$commit_link"
+        
     - name: Comment on the issue
       run: |
         issue_number=${{ github.event.issue.number }}  # Replace with the actual issue number
-        comment="${{ steps.run-script.outputs.script-output }} Commit Link: $commit_link"
+        comment="${{ steps.run-script.outputs.script-output }} Commit Link: ${{ steps.get-commit-link.outputs.commit-output }}"
   
         curl -X POST \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
