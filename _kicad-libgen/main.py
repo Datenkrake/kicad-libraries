@@ -8,8 +8,8 @@ from libgen import query_item
 from jlcquery import query_jlcparts
 from symlibtable import update_symlibtable
 from kicadmod import update_kicadmod_model
-
-
+from symclean import clean_symbol
+from values import find_values
 
 def do_the_thing(jlc_pid: str):
     # query the kicad library from JLC using JLC2KiCad
@@ -21,12 +21,13 @@ def do_the_thing(jlc_pid: str):
     kicad_component.LCSC = lcsc_data["LCSC_PID"]
     kicad_component.MFR = lcsc_data["manufacturer"]
     kicad_component.MPN = lcsc_data["manufacturer_part_number"]
-    kicad_component.Value = lcsc_data["LCSC Component Type"]
+    #kicad_component.Value = lcsc_data["LCSC Component Type"]
     kicad_component.Symbols = lcsc_data["LCSC Symbol"]
     kicad_component.Footprints = lcsc_data["LCSC Footprint"]
     kicad_component.uuid = f'{lcsc_data["manufacturer"]}_{lcsc_data["manufacturer_part_number"]}_{lcsc_data["LCSC_PID"]}'
     # fix model path in footprint file to make it relative
     update_kicadmod_model(lcsc_data['LCSC Footprint'][len('footprint:'):]+'.kicad_mod')
+    clean_symbol(lcsc_data['LCSC Symbol'])
 
     # query the jlc parts database
     jlcparts_data = query_jlcparts(jlc_pid)
@@ -38,6 +39,15 @@ def do_the_thing(jlc_pid: str):
         kicad_component.Category = jlcparts_data["Category"]
         kicad_component.Subcategory = jlcparts_data["Subcategory"]
         kicad_component.Price = jlcparts_data["Price"]
+        # find the values in the description
+        values = find_values(jlcparts_data)
+        # update the kicad component with the values
+        kicad_component.Value = f"{values["value1"], values["value2"], values["value3"], values["value4"]}"
+        kicad_component.value1 = values["value1"]
+        kicad_component.value2 = values["value2"]
+        kicad_component.value3 = values["value3"]
+        kicad_component.value4 = values["value4"]
+
 
     # add the component to the database
     with Session(engine) as session:
