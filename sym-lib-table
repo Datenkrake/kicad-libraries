@@ -285,4 +285,5 @@
   (lib (name "BSS123-7-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BSS123-7-F.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "BSS84-7-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BSS84-7-F.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "PESD2CANFD24V-TR")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/PESD2CANFD24V-TR.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "1N4148W_C917030")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/1N4148W_C917030.kicad_sym")(options "")(descr "")(hidden))
 )
