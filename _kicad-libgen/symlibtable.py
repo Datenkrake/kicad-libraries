@@ -15,6 +15,11 @@ def update_symlibtable(thingdict: dict):
         with open('sym-lib-table', 'r') as file:
             lines = file.readlines()
 
+        # check if the line already exists
+        for line in lines:
+            if line.strip() == new_line.strip():
+                return
+
         # Find the last enclosing bracket
         for i in range(len(lines) - 1, -1, -1):
             if lines[i].strip() == ')':
