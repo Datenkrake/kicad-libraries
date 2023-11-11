@@ -75,7 +75,7 @@ jobs:
 
     - name: Commit and push changes to main
       run: |
-        comment="${{ steps.run-script.outputs.script-output }}"
+        comment="${{ github.event.issue.title }}"
         
         git config user.email "refried08oatmeal@icloud.com"
         git config user.name "Datenkrake"
