@@ -115,6 +115,6 @@ if __name__ == "__main__":
 
     # encode the JSON string in Base64 format
     # results_encoded = base64.b64encode(results_json.encode()).decode()
-
-    print(f"::set-output name=script-output::{results_json}")
+    results_string = str(results_json)
+    print(f"::set-output name=script-output::{results_string}")
 
