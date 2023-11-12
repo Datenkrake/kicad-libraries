@@ -1,4 +1,4 @@
-(module "CAP-SMD_BD10.0-L10.3-W10.3-LS10.9-FD" (layer F.Cu) (tedit 65510AA0)
+(module "CAP-SMD_BD10.0-L10.3-W10.3-LS10.9-FD" (layer F.Cu) (tedit 65510D42)
   (descr "CAP-SMD_BD10.0-L10.3-W10.3-LS10.9-FD footprint")
   (tags "CAP-SMD_BD10.0-L10.3-W10.3-LS10.9-FD footprint")
   (fp_text reference REF** (at 0 -7.226238) (layer F.SilkS)
