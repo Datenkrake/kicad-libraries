@@ -62,6 +62,13 @@ jobs:
       run: 7z x cache.zip
       working-directory: ${{ github.workspace }}
 
+    - name: Cache extracted files
+      uses: actions/cache@v3
+      with:
+        path: |
+          cache
+        key: ${{ runner.os }}-extracted-files-${{ hashFiles('cache/**') }}
+
     - name: Run your action here
       id: run-script
       # Add the steps or commands you want to run when an issue is created
