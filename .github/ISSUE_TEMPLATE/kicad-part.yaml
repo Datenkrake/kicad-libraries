@@ -33,6 +33,7 @@ body:
     id: parameters
     attributes:
       label: Set Value(s)
+      size: large
       description: Set one or more parameters for the component.
       placeholder: Keep what was there, just add the value(s) you want to set.
       value:  "Symbols: \n
