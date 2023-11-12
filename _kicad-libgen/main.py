@@ -115,10 +115,13 @@ if __name__ == "__main__":
 
     # convert the list of dictionaries to a JSON string
     results_json = json.dumps(results_dicts)
+    results_string = ""
+    for key, value in results.items():
+        results_string += f"{key}: {value}\n"
 
     # encode the JSON string in Base64 format
     # results_encoded = base64.b64encode(results_json.encode()).decode()
-    results_string = shlex.quote(str(results_json))
+    results_string = shlex.quote(results_string)
 
     print(results_string)
     print(f"::set-output name=script-output::{results_string}")
