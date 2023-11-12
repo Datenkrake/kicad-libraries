@@ -47,13 +47,13 @@ jobs:
       run: sudo apt-get install -y jq
 
     - name: Cache downloaded files
-        uses: actions/cache@v3
-        with:
-          path: |
-            cache
-          key: ${{ runner.os }}-files-${{ hashFiles('cache/**') }}
-        restore-keys: |
-            ${{ runner.os }}-files-
+      uses: actions/cache@v3
+      with:
+        path: |
+          cache
+        key: ${{ runner.os }}-files-${{ hashFiles('cache/**') }}
+      restore-keys: |
+          ${{ runner.os }}-files-
 
     - name: Download Files
       run: wget https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8} || true
