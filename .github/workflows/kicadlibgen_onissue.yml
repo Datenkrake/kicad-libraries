@@ -19,24 +19,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v4.7.1
       with:
-        # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
         python-version: '3.10' # optional
-        # File containing the Python version to use. Example: .python-version
-        # python-version-file: # optional
-        # Used to specify a package manager for caching in the default directory. Supported values: pip, pipenv, poetry.
-        # cache: pip # optional
-        # The target architecture (x86, x64) of the Python or PyPy interpreter.
-        # architecture: # optional
-        # Set this option if you want the action to check for the latest available version that satisfies the version spec.
-        # check-latest: # optional
-        # The token used to authenticate when fetching Python distributions from https://github.com/actions/python-versions. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting.
-        # token: # optional, default is ${{ github.server_url == 'https://github.com' && github.token || '' }}
-        # Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies.
-        # cache-dependency-path: # optional
-        # Set this option if you want the action to update environment variables.
-        # update-environment: # optional, default is true
-        # When 'true', a version range passed to 'python-version' input will match prerelease versions if no GA versions are found. Only 'x.y' version range is supported for CPython.
-        # allow-prereleases: # optional
 
     - name: Install Python dependencies
       run: |
@@ -46,16 +29,6 @@ jobs:
     - name: Install jq
       run: sudo apt-get install -y jq
 
-    - name: Cache downloaded files
-      id: cache
-      uses: actions/cache@v3
-      with:
-        path: |
-          ${{ github.workspace }}/cache.z*
-        key: ${{ runner.os }}-files-${{ hashFiles('cache.z*') }}
-        restore-keys: |
-          ${{ runner.os }}-files-
-        max-age: 604800
     - name: Download Files
       run: wget https://yaqwsx.github.io/jlcparts/data/cache.zip https://yaqwsx.github.io/jlcparts/data/cache.z0{1..8} || true
       working-directory: ${{ github.workspace }}
@@ -65,20 +38,8 @@ jobs:
       run: 7z x cache.zip
       working-directory: ${{ github.workspace }}
 
-    - name: Cache extracted files
-      uses: actions/cache@v3
-      with:
-        path: |
-          ${{ github.workspace }}
-        key: ${{ runner.os }}-extracted-files-${{ hashFiles('cache.sqlite3') }}
-        restore-keys: |
-            ${{ runner.os }}-extracted-files-
-
     - name: Run your action here
       id: run-script
-      # Add the steps or commands you want to run when an issue is created
-      # For example, you can use a script or command to perform some actions.
-      # Here's a basic example that echoes a message:
       run: |
         output=$(python _kicad-libgen/main.py "${{ github.event.issue.title }}")
         echo "::set-output name=script-output::$output"
@@ -90,8 +51,6 @@ jobs:
           mv $files JLC2KiCad_lib/footprint/Library.pretty/
         fi
       working-directory: ${{ github.workspace }}
-
-
 
     - name: Set Git Config for Rebase
       run: git config pull.rebase true
