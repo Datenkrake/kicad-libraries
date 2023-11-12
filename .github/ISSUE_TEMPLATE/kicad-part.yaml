@@ -35,16 +35,7 @@ body:
       label: Set Value(s)
       description: Set one or more parameters for the component.
       placeholder: Keep what was there, just add the value(s) you want to set.
-      value:  "Symbols: \n
-              Footprints: \n
-              Datasheet: \n
-              Description: \n
-              Category: \n
-              Subcategory: \n
-              value1: \n
-              value2: \n
-              value3: \n
-              value4: "
+      value:  "Symbols: \nFootprints: \nDatasheet: \nDescription: \nCategory: \nSubcategory: \nvalue1: \nvalue2: \nvalue3: \nvalue4: "
     validations:
       required: false
   
