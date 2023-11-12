@@ -113,11 +113,12 @@ if __name__ == "__main__":
     # convert each KicadComponent object in the list to a dictionary
     results_dicts = [result.to_dict() for result in results]
 
-    # convert the list of dictionaries to a JSON string
-    results_json = json.dumps(results_dicts)
-    results_string = ""
-    for key, value in results_json.items():
-        results_string += f"{key}: {value}\n"
+    for results_dict in results_dicts:
+        # convert the list of dictionaries to a JSON string
+        #results_dict = json.dumps(results_dict)
+        results_string = ""
+        for key, value in results_dict.items():
+            results_string += f"{key}: {value}\n"
 
     # encode the JSON string in Base64 format
     # results_encoded = base64.b64encode(results_json.encode()).decode()
