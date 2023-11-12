@@ -11,10 +11,17 @@ def main():
     con2 = sqlite3.connect("_kicad-libgen/db.sqlite3")
     cursor2 = con2.cursor()
 
+    # get the column names from the table
+    cursor2.execute(f"PRAGMA table_info(kicadcomponent)")
+    columns = cursor2.fetchall()
+
     # for each component in db.sqlite3 table kicadcomponent
     cursor2.execute("SELECT * FROM kicadcomponent")
-    components = cursor2.fetchall()
-    for component in components:
+    values = cursor2.fetchall()
+
+    result = [dict(zip([column[1] for column in columns], value)) for value in values]
+
+    for component in result:
         # get the lcsc pid
         lcsc = component['LCSC']
         # get the jlcdata
