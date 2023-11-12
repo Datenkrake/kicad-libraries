@@ -292,4 +292,5 @@
   (lib (name "WS2812E-V5")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/WS2812E-V5.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "UWX1C101MCL1GB")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/UWX1C101MCL1GB.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "UWT1H221MNL1GS")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/UWT1H221MNL1GS.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "UWT1H101MNL1GS")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/UWT1H101MNL1GS.kicad_sym")(options "")(descr "")(hidden))
 )
