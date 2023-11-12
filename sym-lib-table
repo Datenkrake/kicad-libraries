@@ -297,4 +297,6 @@
   (lib (name "RVE100UF35V67RV0072")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/RVE100UF35V67RV0072.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "50TZV220M10X10_5")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/50TZV220M10X10_5.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "50SGV100M8X10_5")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/50SGV100M8X10_5.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "35THV220MSPA10X10_5")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/35THV220MSPA10X10_5.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "35TZV47M6_3X6_1")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/35TZV47M6_3X6_1.kicad_sym")(options "")(descr "")(hidden))
 )
