@@ -36,15 +36,15 @@ body:
       description: Set one or more parameters for the component.
       placeholder: Keep what was there, just add the value(s) you want to set.
       value:  "Symbols: \n
-               Footprints: \n
-               Datasheet: \n
-               Description: \n
-               Category: \n
-               Subcategory: \n
-               value1: \n
-               value2: \n
-               value3: \n
-               value4: "
+              Footprints: \n
+              Datasheet: \n
+              Description: \n
+              Category: \n
+              Subcategory: \n
+              value1: \n
+              value2: \n
+              value3: \n
+              value4: "
     validations:
       required: false
   
