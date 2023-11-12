@@ -106,11 +106,12 @@ jobs:
         comment=$(echo "${{ steps.run-script.outputs.script-output }}")
         commit_link=$(echo "${{ steps.get-commit-link.outputs.commit-output }}")
         body=$(echo "$comment Commit Link: $commit_link")
-      
+        json_body=$(jq -n --arg body "$body" '{body: $body}')
+
         curl -X POST \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
-          -d "$body" \
+          -d "$json_body" \
           "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments"
           
         
