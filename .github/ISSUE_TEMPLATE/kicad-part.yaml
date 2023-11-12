@@ -35,25 +35,16 @@ body:
       label: Set Value(s)
       description: Set one or more parameters for the component.
       placeholder: Keep what was there, just add the value(s) you want to set.
-      value: {'id': 1,
-              'LCSC': '',
-              'MPN': '',
-              'MFR': '',
-              'Value': '',
-              'Symbols': '',
+      value:  'Symbols': '',
               'Footprints': 'footprint:',
               'Datasheet': '',
               'Description': '',
-              'Stock': '',
               'Category': '',
               'Subcategory': '',
-              'Price': '',
-              'uuid': '',
               'value1': '',
               'value2': '',
               'value3': '',
               'value4': ''
-             }
     validations:
       required: false
   
