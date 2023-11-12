@@ -1,4 +1,4 @@
-(module "LED-SMD_4P-L5.0-W5.0-LS5.4-TL-1" (layer F.Cu) (tedit 6550F6A3)
+(module "LED-SMD_4P-L5.0-W5.0-LS5.4-TL-1" (layer F.Cu) (tedit 6550FA00)
   (descr "LED-SMD_4P-L5.0-W5.0-LS5.4-TL-1 footprint")
   (tags "LED-SMD_4P-L5.0-W5.0-LS5.4-TL-1 footprint")
   (fp_text reference REF** (at 0.000076 -4.540005) (layer F.SilkS)
