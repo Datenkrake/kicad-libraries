@@ -116,7 +116,7 @@ if __name__ == "__main__":
     # convert the list of dictionaries to a JSON string
     results_json = json.dumps(results_dicts)
     results_string = ""
-    for key, value in results.items():
+    for key, value in results_json.items():
         results_string += f"{key}: {value}\n"
 
     # encode the JSON string in Base64 format
