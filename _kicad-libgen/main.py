@@ -118,7 +118,7 @@ if __name__ == "__main__":
         #results_dict = json.dumps(results_dict)
         results_string = ""
         for key, value in results_dict.items():
-            results_string += f"{key}: {value} \\n"
+            results_string += f"{key}: {value} <br>"
 
     # encode the JSON string in Base64 format
     # results_encoded = base64.b64encode(results_json.encode()).decode()
