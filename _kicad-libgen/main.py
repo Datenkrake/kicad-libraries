@@ -99,6 +99,8 @@ if __name__ == "__main__":
     if "," in jlc_pid:
         # split the list into a list of jlc_pid
         jlc_pid = jlc_pid.split(",")
+        # strip whitespace from each jlc_pid
+        jlc_pid = [j.strip() for j in jlc_pid]
         # loop through the list of jlc_pid
         for jlc_pid in jlc_pid:
             # query the jlc_pid
