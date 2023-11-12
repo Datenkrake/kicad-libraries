@@ -47,7 +47,7 @@ jobs:
       run: sudo apt-get install -y jq
 
     - name: Cache downloaded files
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             cache
