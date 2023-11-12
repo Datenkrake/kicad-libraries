@@ -113,10 +113,10 @@ if __name__ == "__main__":
     # convert each KicadComponent object in the list to a dictionary
     results_dicts = [result.to_dict() for result in results]
 
+    results_string = ""
     for results_dict in results_dicts:
         # convert the list of dictionaries to a JSON string
         #results_dict = json.dumps(results_dict)
-        results_string = ""
         for key, value in results_dict.items():
             results_string += f"{key}: {value} <br>"
 
