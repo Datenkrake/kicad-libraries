@@ -1,4 +1,4 @@
-name: Fetch JLC Parts Database (Daily)
+name: Update Stock and Price Data from JLCPARTS (Daily)
 
 on:
   workflow_dispatch:  # Allow manual triggering
@@ -20,6 +20,11 @@ jobs:
     - name: Unzip Files
       run: 7z x cache.zip
       working-directory: ${{ github.workspace }}
+
+    - name: Run your action here
+      id: run-script
+      run: |
+        output=$(python _kicad-libgen/refresh_jlcdata.py)
 
     - name: Commit and Push Changes
       run: |
