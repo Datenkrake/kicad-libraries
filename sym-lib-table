@@ -290,4 +290,5 @@
   (lib (name "BCR133WH6327XTSA1")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BCR133WH6327XTSA1.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "UMG8NTR")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/UMG8NTR.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "WS2812E-V5")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/WS2812E-V5.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "UWX1C101MCL1GB")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/UWX1C101MCL1GB.kicad_sym")(options "")(descr "")(hidden))
 )
