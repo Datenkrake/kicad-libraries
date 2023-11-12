@@ -1,4 +1,4 @@
-(module "SOD-123_L2.8-W1.8-LS3.7-RD" (layer F.Cu) (tedit 655117E7)
+(module "SOD-123_L2.8-W1.8-LS3.7-RD" (layer F.Cu) (tedit 65511D5C)
   (descr "SOD-123_L2.8-W1.8-LS3.7-RD footprint")
   (tags "SOD-123_L2.8-W1.8-LS3.7-RD footprint")
   (fp_text reference REF** (at 0 -2.866193) (layer F.SilkS)
