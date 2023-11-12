@@ -1,0 +1,69 @@
+(kicad_symbol_lib (version 20210201) (generator TousstNicolas/JLC2KiCad_lib)
+  (symbol "35TZV47M6_3X6_1" (pin_names hide)  (in_bom yes) (on_board yes)
+    (property "Reference" "C" (id 0) (at 0 1.27 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (symbol "35TZV47M6_3X6_1_0_1"
+      (polyline
+        (pts
+          (xy 2.0320040640081283 0.5080010160020321)
+          (xy -2.0320040640081283 0.5080010160020321)
+        )
+        (stroke (width 0) (type default) (color 0 0 0 0))
+        (fill (type none))
+      )
+      (pin input line
+        (at 0.0 3.81000762001524 270)
+        (length 2.54000508001016)
+        (name "1" (effects (font (size 1 1))))
+        (number "1" (effects (font (size 1 1))))
+      )
+      (pin input line
+        (at 0.0 -3.81000762001524 90)
+        (length 2.54000508001016)
+        (name "2" (effects (font (size 1 1))))
+        (number "2" (effects (font (size 1 1))))
+      )
+      (polyline
+        (pts
+          (xy 0.0 1.27000254000508)
+          (xy 0.0 0.5080010160020321)
+        )
+        (stroke (width 0) (type default) (color 0 0 0 0))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy 0.0 -0.5080010160020321)
+          (xy 0.0 -1.27000254000508)
+        )
+        (stroke (width 0) (type default) (color 0 0 0 0))
+        (fill (type none))
+      )
+      (arc
+        (start 0.10077821573985533 -1.273615365607729)
+        (mid -2.479482777342552 1.2254854367874508)
+        (end 0.019618025052627653 3.805746429869858)
+        (stroke (width 0) (type default) (color 0 0 0 0))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy 0.762001524003048 2.54000508001016)
+          (xy 0.762001524003048 1.524003048006096)
+        )
+        (stroke (width 0) (type default) (color 0 0 0 0))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy 1.27000254000508 2.0320040640081283)
+          (xy 0.25400050800101603 2.0320040640081283)
+        )
+        (stroke (width 0) (type default) (color 0 0 0 0))
+        (fill (type none))
+      )
+    )
+  )
+
+)
