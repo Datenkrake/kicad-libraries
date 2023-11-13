@@ -1,6 +1,6 @@
 name: KiCad Library
 description: Create or edit a KiCad Library
-title: "[KiCad]: "
+title: ""
 labels: ["libgen"]
 projects: []
 assignees:

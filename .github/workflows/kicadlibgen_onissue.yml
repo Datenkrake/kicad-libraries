@@ -12,6 +12,24 @@ jobs:
     concurrency:
       group: my-workflow-${{ github.ref }}
 
+    - name: Check if issue has label libgen
+      uses: actions/github-script@0.10.0
+      with:
+        script: |
+          const issue = await github.issues.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number
+          });
+
+          if (issue.data.labels.some(label => label.name === 'libgen')) {
+            console.log('Issue has the label libgen');
+            process.exit(0);
+          } else {
+            console.log('Issue does not have the label libgen');
+            process.exit(1);
+          }
+
     steps:
     - name: Check out code
       uses: actions/checkout@v2
