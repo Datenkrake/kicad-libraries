@@ -64,8 +64,8 @@ jobs:
     - name: Run your action here
       id: run-script
       run: |
-        partnumber = $(echo "${{ steps.extract.outputs.partnumber }}")
-        output=$(python _kicad-libgen/main.py $partnumber)
+        partnumber="${{ steps.extract.outputs.partnumber }}"
+        output=$(python _kicad-libgen/main.py "$partnumber")
         echo "::set-output name=script-output::$output"
 
     - name: Move .kicad_mod files
