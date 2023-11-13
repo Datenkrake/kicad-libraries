@@ -59,11 +59,13 @@ jobs:
         issue_body="${{ github.event.issue.body }}"
         partnumber=$(echo "$issue_body" | awk '/### Part Number/{n=1; next} n && NF {print $0; n=0}')
         echo "Part Number: $partnumber"
+        echo "::set-output name=partnumber::$partnumber"
 
     - name: Run your action here
       id: run-script
       run: |
-        output=$(python _kicad-libgen/main.py "${{ steps.extract.outputs.partnumber }}")
+        partnumber = $(echo "${{ steps.extract.outputs.partnumber }}")
+        output=$(python _kicad-libgen/main.py $partnumber)
         echo "::set-output name=script-output::$output"
 
     - name: Move .kicad_mod files
