@@ -16,6 +16,7 @@ jobs:
     - name: Check if issue has label libgen
       uses: actions/github-script@v6
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const issue = await github.issues.get({
             owner: context.repo.owner,
@@ -25,7 +26,6 @@ jobs:
 
           if (issue.data.labels.some(label => label.name === 'libgen')) {
             console.log('Issue has the label libgen');
-            process.exit(0);
           } else {
             console.log('Issue does not have the label libgen');
             process.exit(1);
