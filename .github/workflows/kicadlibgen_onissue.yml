@@ -49,6 +49,9 @@ jobs:
       run: 7z x cache.zip
       working-directory: ${{ github.workspace }}
 
+    - name: Print Issue Body
+      run: echo "Issue Body: ${{ github.event.issue.body }}"
+
     - name: Extract Part Number
       id: extract
       run: |
