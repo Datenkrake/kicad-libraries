@@ -28,7 +28,6 @@ def do_the_thing(jlc_pid: str):
     #kicad_component.Value = lcsc_data["LCSC Component Type"]
     kicad_component.Symbols = lcsc_data["LCSC Symbol"]
     kicad_component.Footprints = lcsc_data["LCSC Footprint"]
-    kicad_component.uuid = f'{lcsc_data["manufacturer"]}_{lcsc_data["manufacturer_part_number"]}_{lcsc_data["LCSC_PID"]}'
     # fix model path in footprint file to make it relative
     if lcsc_data['LCSC Footprint'] is not None:
         update_kicadmod_model(lcsc_data['LCSC Footprint'][len('footprint:'):]+'.kicad_mod')
