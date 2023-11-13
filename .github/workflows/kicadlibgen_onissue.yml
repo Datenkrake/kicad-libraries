@@ -50,11 +50,11 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Extract Part Number
-        id: extract
-        run: |
-          issue_body=${{ github.event.issue.body }}
-          partnumber=$(echo "$issue_body" | yq eval '.[1].attributes.placeholder' -)
-          echo "Part Number: $partnumber"
+      id: extract
+      run: |
+        issue_body=${{ github.event.issue.body }}
+        partnumber=$(echo "$issue_body" | yq eval '.[1].attributes.placeholder' -)
+        echo "Part Number: $partnumber"
 
     - name: Run your action here
       id: run-script
