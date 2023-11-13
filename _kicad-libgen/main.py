@@ -89,6 +89,8 @@ def do_the_thing(jlc_pid: str):
         # generate new uuid
         cursor.execute(f"UPDATE kicadcomponent SET uuid = 'B3D{component[0]:06x}' WHERE id = {component[0]}")
         con.commit()
+        # add the uuid to kicad_component
+        kicad_component.uuid = f"B3D{component[0]:06x}"
 
     return kicad_component
     
