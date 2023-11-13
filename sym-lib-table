@@ -301,4 +301,5 @@
   (lib (name "35TZV47M6_3X6_1")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/35TZV47M6_3X6_1.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "MMSZ5231B-7-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/MMSZ5231B-7-F.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "25SEV100M6_3X8")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/25SEV100M6_3X8.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "EDZVT2R2_0B")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/EDZVT2R2_0B.kicad_sym")(options "")(descr "")(hidden))
 )
