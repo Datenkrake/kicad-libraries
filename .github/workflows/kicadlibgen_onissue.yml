@@ -12,6 +12,7 @@ jobs:
     concurrency:
       group: my-workflow-${{ github.ref }}
 
+    steps:
     - name: Check if issue has label libgen
       uses: actions/github-script@0.10.0
       with:
@@ -29,8 +30,7 @@ jobs:
             console.log('Issue does not have the label libgen');
             process.exit(1);
           }
-
-    steps:
+          
     - name: Check out code
       uses: actions/checkout@v2
 
