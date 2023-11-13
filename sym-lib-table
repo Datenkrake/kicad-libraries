@@ -302,4 +302,5 @@
   (lib (name "MMSZ5231B-7-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/MMSZ5231B-7-F.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "25SEV100M6_3X8")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/25SEV100M6_3X8.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "EDZVT2R2_0B")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/EDZVT2R2_0B.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "SMAZ18-13-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/SMAZ18-13-F.kicad_sym")(options "")(descr "")(hidden))
 )
