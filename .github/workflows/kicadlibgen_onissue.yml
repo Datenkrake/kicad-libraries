@@ -49,10 +49,17 @@ jobs:
       run: 7z x cache.zip
       working-directory: ${{ github.workspace }}
 
+    - name: Extract Part Number
+        id: extract
+        run: |
+          issue_body=${{ github.event.issue.body }}
+          partnumber=$(echo "$issue_body" | yq eval '.[1].attributes.placeholder' -)
+          echo "Part Number: $partnumber"
+
     - name: Run your action here
       id: run-script
       run: |
-        output=$(python _kicad-libgen/main.py "${{ github.event.issue.title }}")
+        output=$(python _kicad-libgen/main.py "${{ steps.extract.outputs.partnumber }}")
         echo "::set-output name=script-output::$output"
 
     - name: Move .kicad_mod files
@@ -89,6 +96,12 @@ jobs:
         commit_sha="${{ steps.commit-and-push.outputs.commit-sha }}"
         commit_link="https://github.com/${{ github.repository }}/commit/$commit_sha"
         echo "::set-output name=commit-output::$commit_link"
+
+    - name: Update Issue Title
+        run: |
+          issue_number=${{ github.event.issue.number }}
+          new_title="KiCad Library: ${{ github.event.issue.title }}"
+          curl -X PATCH -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d "{\"title\":\"${new_title}\"}" "https://api.github.com/repos/${{ github.repository }}/issues/${issue_number}"
 
     - name: Comment on the issue
       run: |
