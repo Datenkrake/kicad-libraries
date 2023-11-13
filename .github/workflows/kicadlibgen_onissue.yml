@@ -57,7 +57,7 @@ jobs:
       id: extract
       run: |
         issue_body="${{ github.event.issue.body }}"
-        partnumber=$(echo "$issue_body" | awk '/id: partnumber/ {getline; print $2}')
+        partnumber=$(echo "$issue_body" | awk '/### Part Number/{getline; print $1}')
         echo "Part Number: $partnumber"
 
     - name: Run your action here
