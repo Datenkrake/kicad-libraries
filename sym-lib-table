@@ -305,4 +305,5 @@
   (lib (name "SMAZ18-13-F")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/SMAZ18-13-F.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "MMBZ5241BLT1G")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/MMBZ5241BLT1G.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "ZMM5V1-MS")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/ZMM5V1-MS.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "BZV55-C27,115")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BZV55-C27,115.kicad_sym")(options "")(descr "")(hidden))
 )
