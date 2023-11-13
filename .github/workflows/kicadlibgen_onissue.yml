@@ -13,23 +13,16 @@ jobs:
       group: my-workflow-${{ github.ref }}
 
     steps:
-    - name: Check if issue has label libgen
-      uses: actions/github-script@v6
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const issue = await github.issues.get({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: context.issue.number
-          });
-
-          if (issue.data.labels.some(label => label.name === 'libgen')) {
-            console.log('Issue has the label libgen');
-          } else {
-            console.log('Issue does not have the label libgen');
-            process.exit(1);
-          }
+    - name: Check for Libgen Label
+        run: |
+          issue_labels=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" | jq -r '.[].name')
+          
+          if [[ "$issue_labels" == *"libgen"* ]]; then
+            echo "Issue has the 'libgen' label."
+          else
+            echo "Issue does not have the 'libgen' label."
+            exit 1
+          fi
 
     - name: Check out code
       uses: actions/checkout@v2
