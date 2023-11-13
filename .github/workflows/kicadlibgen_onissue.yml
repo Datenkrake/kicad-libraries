@@ -53,7 +53,7 @@ jobs:
       id: extract
       run: |
         issue_body=${{ github.event.issue.body }}
-        partnumber=$(echo "$issue_body" | yq eval '.[1].attributes.placeholder' -)
+        partnumber=$(echo "$issue_body" | jq -r '.[1].attributes.placeholder')
         echo "Part Number: $partnumber"
 
     - name: Run your action here
@@ -100,7 +100,7 @@ jobs:
     - name: Update Issue Title
       run: |
         issue_number=${{ github.event.issue.number }}
-        new_title="KiCad Library: ${{ github.event.issue.title }}"
+        new_title="KiCad Library: ${{ steps.extract.outputs.partnumber }}"
         curl -X PATCH -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d "{\"title\":\"${new_title}\"}" "https://api.github.com/repos/${{ github.repository }}/issues/${issue_number}"
 
     - name: Comment on the issue
