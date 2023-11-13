@@ -50,7 +50,8 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Print Issue Body
-      run: echo "Issue Body: ${{ github.event.issue.body }}"
+      run: |
+        echo "Issue Body: ${{ github.event.issue.body }}"
 
     - name: Extract Part Number
       id: extract
