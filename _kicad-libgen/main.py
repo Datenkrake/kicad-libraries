@@ -113,7 +113,7 @@ def read_github_issue(repository, issue_number):
         # drop empty lines from the issue
 
     
-        return issue.body
+        return issue
 
     except Exception as e:
         print(f"Error: {e}")
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     issue_number = args.issue_number
 
     # Read the GitHub issue
-    issue_body = read_github_issue(repository_name, issue_number)
+    issue = read_github_issue(repository_name, issue_number)
 
     # if "," in jlc_pid:
     #     # split the list into a list of jlc_pid
@@ -168,5 +168,5 @@ if __name__ == "__main__":
     # results_string = shlex.quote(results_string)
 
     # print(results_string)
-    print(f"::set-output name=script-output::{issue_body}")
+    print(f"::set-output name=script-output::{issue}")
 
