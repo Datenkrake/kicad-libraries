@@ -57,9 +57,14 @@ def update_custom_component(pid, issue_dict: dict):
     kicad_component = kicadmodel.KicadComponent()
 
     # set the values
-    kicad_component.Symbols = issue_dict['Symbols']+":"+issue_dict['Symbols']
-    if issue_dict['Footprints'] is not None:
+    if issue_dict['Symbols'] is not None and issue_dict['Symbols'] != "-":
+        kicad_component.Symbols = issue_dict['Symbols']+":"+issue_dict['Symbols']
+    else:
+        kicad_component.Symbols = issue_dict['Symbols']
+    if issue_dict['Footprints'] is not None and issue_dict['Footprints'] != "-":
         kicad_component.Footprints = "footprint:"+issue_dict['Footprints']
+    else:
+        kicad_component.Footprints = issue_dict['Footprints']
 
     kicad_component.MFR = issue_dict['mfr']
     kicad_component.MPN = issue_dict['mpn']
@@ -93,7 +98,7 @@ def update_custom_component(pid, issue_dict: dict):
                 if value is not None and value != "-":
                     setattr(existing_component, key, value)
                 if value == "-":
-                    setattr(existing_component, key, None)
+                    setattr(existing_component, key, "")
             session.commit()
             session.refresh(existing_component)
             kicad_component = existing_component
