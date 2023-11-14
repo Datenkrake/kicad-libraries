@@ -60,8 +60,8 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         output=$(python _kicad-libgen/main.py "${{ github.event.issue.number }}")
-        echo "::set-output name=script-output::${{ steps.your_step_id.outputs.script-output }}"
-        echo "::set-output name=script-output2::${{ steps.your_step_id.outputs.script-output2 }}"
+        echo "::set-output name=script-output::${{ steps.run-script.outputs.script-output }}"
+        echo "::set-output name=script-output2::${{ steps.run-script.outputs.script-output2 }}"
 
     - name: Move .kicad_mod files
       run: |
