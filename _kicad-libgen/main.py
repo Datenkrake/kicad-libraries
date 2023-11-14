@@ -109,7 +109,7 @@ def read_github_issue(repository, issue_number):
     try:
         issue = repo.get_issue(issue_number)
         issue_body = issue.body
-        
+        print("issue_body:", issue_body)
         # parse the issue body
         # split the issue body into lines
         issue_body = issue_body.splitlines()
@@ -151,6 +151,7 @@ def read_github_issue(repository, issue_number):
                 key, value = line.split(":")
                 thing_dict[key] = value.strip()
 
+        print("thingdict_end:", thing_dict)
         return thing_dict
 
     except Exception as e:
