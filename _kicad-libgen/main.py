@@ -112,9 +112,9 @@ def read_github_issue(repository, issue_number):
         }
         
         # Convert the dictionary to JSON
-        issue_body = json.dumps(issue_dict, indent=2)
+        #issue_body = json.dumps(issue_dict, indent=2)
 
-        return issue_body
+        return issue_dict
 
     except Exception as e:
         print(f"Error: {e}")
