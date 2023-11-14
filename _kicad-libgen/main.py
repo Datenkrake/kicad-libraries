@@ -157,18 +157,21 @@ if __name__ == "__main__":
         p = create_custom_component(issue_dict)
         #p = update_custom_component(p.uuid, issue_dict)
         # add the component to the list of results as a dictionary
+        print("p:", p)
         results.append(p)
 
-    # convert each KicadComponent object in the list to a dictionary
-    results_dicts = [result.to_dict() for result in results]
 
     results_string = ""
-    for results_dict in results_dicts:
-        # convert the list of dictionaries to a string
-        for key, value in results_dict.items():
-            results_string += f"{key}: {value} <br>"
+    if results is not None:
+        # convert each KicadComponent object in the list to a dictionary
+        results_dicts = [result.to_dict() for result in results]
 
-    results_string = shlex.quote(results_string)
+        for results_dict in results_dicts:
+            # convert the list of dictionaries to a string
+            for key, value in results_dict.items():
+                results_string += f"{key}: {value} <br>"
+
+        results_string = shlex.quote(results_string)
 
     print(results_string)
     print(f"::set-output name=script-output::{results_string}")
