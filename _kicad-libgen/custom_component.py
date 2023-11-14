@@ -2,7 +2,7 @@ from sqlmodel import Session
 from database import engine
 import kicadmodel
 from generate_uuid import generate_uuid
-
+from symtable import update_symlibtable
 
 def create_custom_component(issue_dict: dict):
     # create kicadcomponent
@@ -57,8 +57,8 @@ def update_custom_component(pid, issue_dict: dict):
     kicad_component = kicadmodel.KicadComponent()
 
     # set the values
-    kicad_component.Symbols = issue_dict['Symbols']
-    kicad_component.Footprints = issue_dict['Footprints']
+    kicad_component.Symbols = issue_dict['Symbols']+":"+issue_dict['Symbols']
+    kicad_component.Footprints = "footprint:"+issue_dict['Footprints']
     kicad_component.MFR = issue_dict['mfr']
     kicad_component.MPN = issue_dict['mpn']
     kicad_component.LCSC = None
@@ -73,6 +73,9 @@ def update_custom_component(pid, issue_dict: dict):
     kicad_component.value2 = issue_dict['value2']
     kicad_component.value3 = issue_dict['value3']
     kicad_component.value4 = issue_dict['value4']
+
+    if kicad_component.Symbols is not None:
+        update_symlibtable(issue_dict['Symbols'])
 
     with Session(engine) as session:
         # get the existing component
