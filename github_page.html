@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLite Data Display</title>
+
+    <!-- Include required libraries -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body>
+
+    <h2>SQLite Data Table</h2>
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <!-- Generate table headers dynamically based on columns from the database -->
+            <tr>
+                <th>ID</th>
+                <th>LCSC</th>
+                <th>MPN</th>
+                <th>MFR</th>
+                <th>Value</th>
+                <th>Symbols</th>
+                <th>Footprints</th>
+                <th>Datasheet</th>
+                <th>Description</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Subcategory</th>
+                <th>Price</th>
+                <th>UUID</th>
+                <th>Value1</th>
+                <th>Value2</th>
+                <th>Value3</th>
+                <th>Value4</th>
+                <th>Vendor1</th>
+                <th>Vendor2</th>
+                <th>Vendor3</th>
+                <th>Vendor1_PartNumber</th>
+                <th>Vendor2_PartNumber</th>
+                <th>Vendor3_PartNumber</th>
+                <th>AECQ</th>
+                <th>SN29500_Category</th>
+                <th>SN29500_Base_Fit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTables
+            $('#example').DataTable();
+
+            // Load data into the table
+            $.ajax({
+                url: '_kicad-libgen/db.json', // Updated path to your JSON file
+                dataType: 'json',
+                success: function(data) {
+                    // Iterate through the data and append rows to the table
+                    $.each(data, function(index, row) {
+                        // Add a row with all columns
+                        $('#example tbody').append(
+                            '<tr>' +
+                            '<td>' + row.id + '</td>' +
+                            '<td>' + row.LCSC + '</td>' +
+                            '<td>' + row.MPN + '</td>' +
+                            '<td>' + row.MFR + '</td>' +
+                            '<td>' + row.Value + '</td>' +
+                            '<td>' + row.Symbols + '</td>' +
+                            '<td>' + row.Footprints + '</td>' +
+                            '<td>' + row.Datasheet + '</td>' +
+                            '<td>' + row.Description + '</td>' +
+                            '<td>' + row.Stock + '</td>' +
+                            '<td>' + row.Category + '</td>' +
+                            '<td>' + row.Subcategory + '</td>' +
+                            '<td>' + row.Price + '</td>' +
+                            '<td>' + row.uuid + '</td>' +
+                            '<td>' + row.value1 + '</td>' +
+                            '<td>' + row.value2 + '</td>' +
+                            '<td>' + row.value3 + '</td>' +
+                            '<td>' + row.value4 + '</td>' +
+                            '<td>' + row.vendor1 + '</td>' +
+                            '<td>' + row.vendor2 + '</td>' +
+                            '<td>' + row.vendor3 + '</td>' +
+                            '<td>' + row.vendor1_partnumber + '</td>' +
+                            '<td>' + row.vendor2_partnumber + '</td>' +
+                            '<td>' + row.vendor3_partnumber + '</td>' +
+                            '<td>' + row.AECQ + '</td>' +
+                            '<td>' + row.SN29500_category + '</td>' +
+                            '<td>' + row.SN29500_base_fit + '</td>' +
+                            '</tr>'
+                        );
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
