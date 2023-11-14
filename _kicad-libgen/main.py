@@ -155,6 +155,7 @@ def read_github_issue(repository, issue_number):
 
     except Exception as e:
         print(f"Error: {e}")
+        return e
 
 
     
