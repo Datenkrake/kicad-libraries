@@ -29,13 +29,22 @@ body:
         - label: Overwrite existing data, incl. Symbol and Footprint files
           required: false
 
+  - type: checkboxes
+    id: create-non-lcsc-part
+    attributes:
+      label: Non LCSC Part
+      description: Check this box to create a non LCSC part in the library.
+      options:
+        - label: Create part without LCSC data
+          required: false
+
   - type: textarea
     id: parameters
     attributes:
       label: Set Value(s)
       description: Set one or more parameters for the component.
       placeholder: Keep what was there, just add the value(s) you want to set.
-      value:  "Symbols: \nFootprints: \nDatasheet: \nDescription: \nCategory: \nSubcategory: \nvalue1: \nvalue2: \nvalue3: \nvalue4: "
+      value:  "Manufacturer: \nManufacturer Part Number: \nSymbols: \nFootprints: \nDatasheet: \nDescription: \nCategory: \nSubcategory: \nvalue1: \nvalue2: \nvalue3: \nvalue4: "
     validations:
       required: false
   
