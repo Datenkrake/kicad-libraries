@@ -1,16 +1,21 @@
 import sqlite3
+from sqlmodel import Session
+from database import engine
+import kicadmodel
 
 def generate_uuid(kicad_component):
-    # connect to the database
-    con = sqlite3.connect("_kicad-libgen/db.sqlite3")
-    cursor = con.cursor()
-    # select all components with no uuid using sqlite3
-    cursor.execute("SELECT * FROM kicadcomponent WHERE uuid IS NULL")
-    values = cursor.fetchall()
-    # generate a uuid for each component with no uuid with schema uuid = f"B3D{component[0]:06x}"
-    for component in values:
-        # generate new uuid
-        cursor.execute(f"UPDATE kicadcomponent SET uuid = 'B3D{component[0]:06x}' WHERE id = {component[0]}")
-        con.commit()
-        # add the uuid to kicad_component
-        kicad_component.uuid = f"B3D{component[0]:06x}"
+    # get the component from the database
+    with Session(engine) as session:
+        existing_component = session.query(kicadmodel.KicadComponent).filter(kicadmodel.KicadComponent.id == kicad_component.id).one()
+    # if the component already has a uuid, return it
+        if existing_component.uuid is not None:
+            return existing_component
+        # if the component does not have a uuid, generate one
+        if existing_component.uuid is None:
+            # set the uuid to 'B3D{component[0]:06x}' where component[0] is the id of the component
+            setattr(existing_component, "uuid", f"B3D{existing_component.id:06x}")
+            # commit the change
+            session.commit()
+            session.refresh(existing_component)
+            # return the component
+            return existing_component
