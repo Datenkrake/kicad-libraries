@@ -113,7 +113,7 @@ def read_github_issue(repository, issue_number):
         # drop empty lines from the issue
 
     
-        return issue
+        return issue.body
 
     except Exception as e:
         print(f"Error: {e}")
