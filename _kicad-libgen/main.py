@@ -162,16 +162,15 @@ if __name__ == "__main__":
 
 
     results_string = ""
-    if results is not None:
-        # convert each KicadComponent object in the list to a dictionary
-        results_dicts = [result.to_dict() for result in results]
+    # convert each KicadComponent object in the list to a dictionary
+    results_dicts = [result.to_dict() for result in results if result is not None]
 
-        for results_dict in results_dicts:
-            # convert the list of dictionaries to a string
-            for key, value in results_dict.items():
-                results_string += f"{key}: {value} <br>"
+    for results_dict in results_dicts:
+        # convert the list of dictionaries to a string
+        for key, value in results_dict.items():
+            results_string += f"{key}: {value} <br>"
 
-        results_string = shlex.quote(results_string)
+    results_string = shlex.quote(results_string)
 
     print(results_string)
     print(f"::set-output name=script-output::{results_string}")
