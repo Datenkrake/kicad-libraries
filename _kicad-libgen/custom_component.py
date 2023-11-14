@@ -25,8 +25,15 @@ def create_custom_component(issue_dict: dict):
     # value2: str
     # value3: str
     # value4: str
-    kicad_component.Symbols = issue_dict['Symbols']
-    kicad_component.Footprints = issue_dict['Footprints']
+     # set the values
+    if issue_dict['Symbols'] is not None and issue_dict['Symbols'] != "-":
+        kicad_component.Symbols = issue_dict['Symbols']+":"+issue_dict['Symbols']
+    else:
+        kicad_component.Symbols = issue_dict['Symbols']
+    if issue_dict['Footprints'] is not None and issue_dict['Footprints'] != "-":
+        kicad_component.Footprints = "footprint:"+issue_dict['Footprints']
+    else:
+        kicad_component.Footprints = issue_dict['Footprints']
     kicad_component.MFR = issue_dict['mfr']
     kicad_component.MPN = issue_dict['mpn']
     kicad_component.LCSC = None
