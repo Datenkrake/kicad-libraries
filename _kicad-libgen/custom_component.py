@@ -47,7 +47,7 @@ def create_custom_component(issue_dict: dict):
         session.commit()
         session.refresh(kicad_component)
 
-    #kicad_component = generate_uuid(kicad_component)
+    kicad_component = generate_uuid(kicad_component)
 
     return kicad_component
 

@@ -155,7 +155,7 @@ if __name__ == "__main__":
     if issue_dict['without_lcsc'] is True and issue_dict['mfr'] is not None and issue_dict['mpn'] is not None:
         print("without_lcsc is True")
         p = create_custom_component(issue_dict)
-        #p = update_custom_component(p.uuid, issue_dict)
+        p = update_custom_component(p.uuid, issue_dict)
         # add the component to the list of results as a dictionary
         print("p:", p)
         results.append(p)

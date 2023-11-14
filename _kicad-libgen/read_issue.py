@@ -45,8 +45,8 @@ def read_github_issue(repository, issue_number):
         # the next line is the mpn
         mpn = issue_body[issue_body.index(mpn_line)+1]
         thing_dict['mpn'] = mpn
-        # find the first line that contains "### Manufacturer"
-        mfr_line = [line for line in issue_body if "### Manufacturer" in line][0]
+        # find the first line that contains "### Manufacturer" and not "### Manufacturer Part Number"
+        mfr_line = [line for line in issue_body if "### Manufacturer" in line and "### Manufacturer Part Number" not in line][0]
         # the next line is the mfr
         mfr = issue_body[issue_body.index(mfr_line)+1]
         thing_dict['mfr'] = mfr
