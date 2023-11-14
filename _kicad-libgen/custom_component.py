@@ -58,7 +58,9 @@ def update_custom_component(pid, issue_dict: dict):
 
     # set the values
     kicad_component.Symbols = issue_dict['Symbols']+":"+issue_dict['Symbols']
-    kicad_component.Footprints = "footprint:"+issue_dict['Footprints']
+    if issue_dict['Footprints'] is not None:
+        kicad_component.Footprints = "footprint:"+issue_dict['Footprints']
+
     kicad_component.MFR = issue_dict['mfr']
     kicad_component.MPN = issue_dict['mpn']
     kicad_component.LCSC = None
