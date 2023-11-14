@@ -140,7 +140,7 @@ if __name__ == "__main__":
 
     # Read the GitHub issue
     issue = read_github_issue(repository_name, issue_number)
-
+    print(issue)
     # if "," in jlc_pid:
     #     # split the list into a list of jlc_pid
     #     jlc_pid = jlc_pid.split(",")
