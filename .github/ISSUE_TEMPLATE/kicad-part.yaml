@@ -62,7 +62,7 @@ body:
       label: Set Value(s)
       description: Set one or more parameters for the component. Leave blank to keep existing values. MFR and MPN are required to create a non LCSC part.
       placeholder: Keep what was there, just add the value(s) you want to set.
-      value:  "Vendor 1: \nVendor 1 Part Number: \nVendor 2: \nVendor 2 Part Number: \nVendor 3: \nVendor 3 Part Number: \nSymbols: \nFootprints: footprint: \nDatasheet: \nDescription: \nCategory: \nSubcategory: \nvalue1: \nvalue2: \nvalue3: \nvalue4: "
+      value:  "Symbols: \nFootprints: footprint: \nDatasheet: \nDescription: \nCategory: \nSubcategory: \nvalue1: \nvalue2: \nvalue3: \nvalue4: \nVendor 1: \nVendor 1 Part Number: \nVendor 2: \nVendor 2 Part Number: \nVendor 3: \nVendor 3 Part Number: "
     validations:
       required: false
   
