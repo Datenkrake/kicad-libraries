@@ -13,7 +13,7 @@ def generate_uuid(kicad_component):
         # if the component does not have a uuid, generate one
         if existing_component.uuid is None:
             # set the uuid to 'B3D{component[0]:06x}' where component[0] is the id of the component
-            setattr(existing_component, "uuid", f"B3D{existing_component.id:06x}")
+            setattr(existing_component, "uuid", f"B3D{existing_component.id:06x}".upper())
             # commit the change
             session.commit()
             session.refresh(existing_component)
