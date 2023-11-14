@@ -171,7 +171,12 @@ if __name__ == "__main__":
             results_string += f"{key}: {value} <br>"
 
     results_string = shlex.quote(results_string)
+    # get uuids
+    uuids = [result.uuid for result in results if result is not None]
+    # convert the list of uuids to a string
+    uuids_string = shlex.quote(json.dumps(uuids))
 
     print(results_string)
     print(f"::set-output name=script-output::{results_string}")
+    print(f"::set-output name=script-output2::{uuids_string}")
 

@@ -54,21 +54,14 @@ jobs:
       run: |
         echo "Issue Body: ${{ github.event.issue.body }}"
 
-    - name: Extract Part Number
-      id: extract
-      run: |
-        issue_body="${{ github.event.issue.body }}"
-        partnumber=$(echo "$issue_body" | awk '/### Part Number/{n=1; next} n && NF {print $0; n=0}')
-        echo "Part Number: $partnumber"
-        echo "::set-output name=partnumber::$partnumber"
-
     - name: Run your action here
       id: run-script
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         output=$(python _kicad-libgen/main.py "${{ github.event.issue.number }}")
-        echo "::set-output name=script-output::$output"
+        echo "::set-output name=script-output::${{ steps.your_step_id.outputs.script-output }}"
+        echo "::set-output name=script-output2::${{ steps.your_step_id.outputs.script-output2 }}"
 
     - name: Move .kicad_mod files
       run: |
@@ -108,7 +101,7 @@ jobs:
     - name: Update Issue Title
       run: |
         issue_number=${{ github.event.issue.number }}
-        new_title="KiCad Library: ${{ steps.extract.outputs.partnumber }}"
+        new_title="KiCad Library: ${{ steps.your_step_id.outputs.script-output2 }}"
         curl -X PATCH -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d "{\"title\":\"${new_title}\"}" "https://api.github.com/repos/${{ github.repository }}/issues/${issue_number}"
 
     - name: Comment on the issue
