@@ -110,12 +110,8 @@ def read_github_issue(repository, issue_number):
         # Get the issue by number
         issue = repo.get_issue(issue_number)
 
-        # Print some information about the issue
-        print(f"Title: {issue.title}")
-        print(f"Body: {issue.body}")
-        print(f"State: {issue.state}")
-        print(f"Created at: {issue.created_at}")
-        print(f"Updated at: {issue.updated_at}")
+        # drop empty lines from the issue
+
     
         return issue.body
 
@@ -132,7 +128,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Query the LCSC database")
     parser.add_argument("issue_number", type=int, help="Github Issue Number")
     args = parser.parse_args()
-    print(args)
+    #print(args)
     # list with results
     results = []
     #jlc_pid = args.jlc_pid
