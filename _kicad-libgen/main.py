@@ -173,9 +173,11 @@ if __name__ == "__main__":
     repository_name = "Datenkrake/kicad-libraries"
     issue_number = args.issue_number
     # Read the GitHub issue
+    print(f"Reading GitHub issue {issue_number} from {repository_name}")
     issue_dict = read_github_issue(repository_name, issue_number)
 
     if "," in issue_dict['pid']:
+        print("Multiple pids found")
         # split pid into a list of pids
         pids = issue_dict['pid'].split(",")
         # strip whitespace from each pid
@@ -192,10 +194,23 @@ if __name__ == "__main__":
                 # query the pid
                 p = update_custom_component(pid, issue_dict)
                 results.append(p)
+    else:
+        print("Single pid found")
+        # if pid does not contain B3D
+        if "B3D" not in issue_dict['pid']:
+            # query the pid
+            p = do_the_thing(issue_dict['pid'], issue_dict['overwrite'])
+            p = update_custom_component(issue_dict['pid'], issue_dict)
+            results.append(p)
+        if "B3D" in issue_dict['pid']:
+            # query the pid
+            p = update_custom_component(issue_dict['pid'], issue_dict)
+            results.append(p)
 
     # if without_lcsc is True
     # check that mfr and mpn are not None
     if issue_dict['without_lcsc'] is True and issue_dict['mfr'] is not None and issue_dict['mpn'] is not None:
+        print("without_lcsc is True")
         p = create_custom_component(issue_dict)
         p = update_custom_component(p.uuid, issue_dict)
         results.append(p)
