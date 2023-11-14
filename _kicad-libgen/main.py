@@ -111,9 +111,9 @@ def read_github_issue(repository, issue_number):
         issue = repo.get_issue(issue_number)
         issue_json = issue.raw_data
         # drop empty lines from the issue
-
+        issue_body = json.dumps(issue_json, indent=2)
     
-        return issue
+        return issue_body
 
     except Exception as e:
         print(f"Error: {e}")
