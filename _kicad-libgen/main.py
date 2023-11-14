@@ -112,7 +112,9 @@ def read_github_issue(repository, issue_number):
         issue_json = issue.raw_data
         # drop empty lines from the issue
         issue_body = json.dumps(issue_json, indent=2)
-        issue_body = issue_body["body"]
+        # reduce to the body of the issue, key "body"
+        issue_body = json.loads(issue_body)["body"]
+        
         return issue_body
 
     except Exception as e:
