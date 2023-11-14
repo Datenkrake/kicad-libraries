@@ -175,7 +175,11 @@ if __name__ == "__main__":
     # Read the GitHub issue
     print(f"Reading GitHub issue {issue_number} from {repository_name}")
     issue_dict = read_github_issue(repository_name, issue_number)
-
+    # if issue_dict mpn or mfr is _No response_, set to None
+    if issue_dict['mpn'] == "_No response_":
+        issue_dict['mpn'] = None
+    if issue_dict['mfr'] == "_No response_":
+        issue_dict['mfr'] = None
     if "," in issue_dict['pid']:
         print("Multiple pids found")
         # split pid into a list of pids
