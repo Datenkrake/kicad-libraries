@@ -107,11 +107,12 @@ def read_github_issue(repository, issue_number):
     repo = g.get_repo(repository)
 
     try:
-        # Get the issue by number
-        issue = repo.get_issue(issue_number)
-        issue_json = issue.raw_data
-        # drop empty lines from the issue
-        issue_body = json.dumps(issue_json, indent=2)
+        issue_dict = {
+            "body": issue.body
+        }
+        
+        # Convert the dictionary to JSON
+        issue_body = json.dumps(issue_dict, indent=2)
 
         return issue_body
 
