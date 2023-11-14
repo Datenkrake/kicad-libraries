@@ -107,6 +107,7 @@ def read_github_issue(repository, issue_number):
     repo = g.get_repo(repository)
 
     try:
+        issue = repo.get_issue(issue_number)
         # issue_dict = {
         #     "body": issue.body
         # }
