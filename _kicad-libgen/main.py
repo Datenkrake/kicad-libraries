@@ -116,11 +116,12 @@ def read_github_issue(repository, issue_number):
         print(f"State: {issue.state}")
         print(f"Created at: {issue.created_at}")
         print(f"Updated at: {issue.updated_at}")
+    
+        return issue.body
 
     except Exception as e:
         print(f"Error: {e}")
 
-    return issue.body
 
     
 #%%
@@ -129,7 +130,7 @@ if __name__ == "__main__":
     # parse arguments
     import argparse
     parser = argparse.ArgumentParser(description="Query the LCSC database")
-    parser.add_argument("issue_number", type=str, help="Github Issue Number")
+    parser.add_argument("issue_number", type=int, help="Github Issue Number")
     args = parser.parse_args()
     print(args)
     # list with results
