@@ -2,7 +2,7 @@ from sqlmodel import Session
 from database import engine
 import kicadmodel
 from generate_uuid import generate_uuid
-from symtable import update_symlibtable
+from symlibtable import update_symlibtable
 
 def create_custom_component(issue_dict: dict):
     # create kicadcomponent
