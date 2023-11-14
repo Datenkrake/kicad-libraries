@@ -58,53 +58,55 @@
 
     <script>
         $(document).ready(function() {
-            // Initialize DataTables
-            $('#example').DataTable();
-
+            var table = $('#example').DataTable({
+                // Your DataTables options here
+            });
+    
             // Load data into the table
             $.ajax({
-                url: 'db.json', // Updated path to your JSON file
+                url: 'db.json',
                 dataType: 'json',
                 success: function(data) {
-                    // Iterate through the data and append rows to the table
+                    // Clear existing data in the table
+                    table.clear();
+    
+                    // Iterate through the data and add rows using DataTables API
                     $.each(data, function(index, row) {
-                        // Add a row with all columns
-                        $('#example tbody').append(
-                            '<tr>' +
-                            '<td>' + row.id + '</td>' +
-                            '<td>' + row.LCSC + '</td>' +
-                            '<td>' + row.MPN + '</td>' +
-                            '<td>' + row.MFR + '</td>' +
-                            '<td>' + row.Value + '</td>' +
-                            '<td>' + row.Symbols + '</td>' +
-                            '<td>' + row.Footprints + '</td>' +
-                            '<td>' + row.Datasheet + '</td>' +
-                            '<td>' + row.Description + '</td>' +
-                            '<td>' + row.Stock + '</td>' +
-                            '<td>' + row.Category + '</td>' +
-                            '<td>' + row.Subcategory + '</td>' +
-                            '<td>' + row.Price + '</td>' +
-                            '<td>' + row.uuid + '</td>' +
-                            '<td>' + row.value1 + '</td>' +
-                            '<td>' + row.value2 + '</td>' +
-                            '<td>' + row.value3 + '</td>' +
-                            '<td>' + row.value4 + '</td>' +
-                            '<td>' + row.vendor1 + '</td>' +
-                            '<td>' + row.vendor2 + '</td>' +
-                            '<td>' + row.vendor3 + '</td>' +
-                            '<td>' + row.vendor1_partnumber + '</td>' +
-                            '<td>' + row.vendor2_partnumber + '</td>' +
-                            '<td>' + row.vendor3_partnumber + '</td>' +
-                            '<td>' + row.AECQ + '</td>' +
-                            '<td>' + row.SN29500_category + '</td>' +
-                            '<td>' + row.SN29500_base_fit + '</td>' +
-                            '</tr>'
-                        );
+                        table.row.add([
+                            row.id,
+                            row.LCSC,
+                            row.MPN,
+                            row.MFR,
+                            row.Value,
+                            row.Symbols,
+                            row.Footprints,
+                            row.Datasheet,
+                            row.Description,
+                            row.Stock,
+                            row.Category,
+                            row.Subcategory,
+                            row.Price,
+                            row.uuid,
+                            row.value1,
+                            row.value2,
+                            row.value3,
+                            row.value4,
+                            row.vendor1,
+                            row.vendor2,
+                            row.vendor3,
+                            row.vendor1_partnumber,
+                            row.vendor2_partnumber,
+                            row.vendor3_partnumber,
+                            row.AECQ,
+                            row.SN29500_category,
+                            row.SN29500_base_fit
+                        ]).draw(false); // Use draw(false) to prevent DataTables from resetting the sorting
                     });
                 }
             });
         });
     </script>
+    
 
 </body>
 </html>
