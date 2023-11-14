@@ -104,7 +104,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Query the LCSC database")
     parser.add_argument("jlc_pid", type=str, help="JLCPCB part #")
     args = parser.parse_args()
-
+    print(args)
     # list with results
     results = []
     jlc_pid = args.jlc_pid
