@@ -15,7 +15,7 @@ body:
     id: partnumber
     attributes:
       label: Part Number
-      description: LCSC or Library Part Number(s)
+      description: LCSC or Library Part Number(s). Separate multiple part numbers with a comma.
       placeholder: ex. "C1234" or "C2345, B3D012AB3"
     validations:
       required: false
@@ -33,7 +33,7 @@ body:
     id: create-non-lcsc-part
     attributes:
       label: Non LCSC Part
-      description: Check this box to create a non LCSC part in the library.
+      description: Check this box to create a non LCSC part in the library. Make sure to place library files in the repository.
       options:
         - label: Create part without LCSC data
           required: false
@@ -60,7 +60,7 @@ body:
     id: parameters
     attributes:
       label: Set Value(s)
-      description: Set one or more parameters for the component. Leave blank to keep existing values.
+      description: Set one or more parameters for the component. Leave blank to keep existing values. Set to - to remove a value.
       placeholder: Keep what was there, just add the value(s) you want to set.
       value:  "Symbols: \nFootprints: \nDatasheet: \nDescription: \nCategory: \nSubcategory: \nSN29500 Category: \nvalue1: \nvalue2: \nvalue3: \nvalue4: \nVendor 1: \nVendor 1 Part Number: \nVendor 2: \nVendor 2 Part Number: \nVendor 3: \nVendor 3 Part Number: "
     validations:

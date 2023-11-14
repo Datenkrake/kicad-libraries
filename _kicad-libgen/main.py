@@ -16,10 +16,15 @@ from symlibtable import update_symlibtable
 from kicadmod import update_kicadmod_model
 from symclean import clean_symbol
 from values import find_values
+from generate_uuid import generate_uuid
+from custom_component import create_custom_component, update_custom_component
 
-def do_the_thing(jlc_pid: str):
+def do_the_thing(jlc_pid: str, overwrite: bool):
     # query the kicad library from JLC using JLC2KiCad
-    lcsc_data = query_item(jlc_pid=jlc_pid, options="")
+    if overwrite is True:
+        lcsc_data = query_item(jlc_pid=jlc_pid, options="")
+    else:
+        lcsc_data = query_item(jlc_pid=jlc_pid, options="--skip_existing")
     if lcsc_data is None:
         return {"message": "not found"}
     # create a kicad component from the data
@@ -65,7 +70,12 @@ def do_the_thing(jlc_pid: str):
             # Component found, update attributes
             for key, value in kicad_component.dict().items():
                 if value is not None:
-                    setattr(existing_component, key, value)
+                    # if overwrite is True, overwrite the existing value
+                    if overwrite is True:
+                        setattr(existing_component, key, value)
+                    # if overwrite is False, only overwrite the existing value if it is None
+                    if overwrite is False and getattr(existing_component, key) is None:
+                        setattr(existing_component, key, value)
             session.commit()
             session.refresh(existing_component)
             kicad_component = existing_component
@@ -80,19 +90,8 @@ def do_the_thing(jlc_pid: str):
 
     # update the symlibtable
     update_symlibtable(lcsc_data)
-
-    con = sqlite3.connect("_kicad-libgen/db.sqlite3")
-    cursor = con.cursor()
-    # select all components with no uuid using sqlite3
-    cursor.execute("SELECT * FROM kicadcomponent WHERE uuid IS NULL")
-    values = cursor.fetchall()
-    # generate a uuid for each component with no uuid with schema uuid = f"B3D{component[0]:06x}"
-    for component in values:
-        # generate new uuid
-        cursor.execute(f"UPDATE kicadcomponent SET uuid = 'B3D{component[0]:06x}' WHERE id = {component[0]}")
-        con.commit()
-        # add the uuid to kicad_component
-        kicad_component.uuid = f"B3D{component[0]:06x}"
+    # write uuid to the database
+    kicad_component = generate_uuid(kicad_component)
 
     return kicad_component
     
@@ -109,7 +108,6 @@ def read_github_issue(repository, issue_number):
     try:
         issue = repo.get_issue(issue_number)
         issue_body = issue.body
-        print("issue_body:", issue_body)
         # parse the issue body
         # split the issue body into lines
         issue_body = issue_body.splitlines()
@@ -151,7 +149,7 @@ def read_github_issue(repository, issue_number):
                 key, value = line.split(":")
                 thing_dict[key] = value.strip()
 
-        print("thingdict_end:", thing_dict)
+        print("thing_dict:", thing_dict)
         return thing_dict
 
     except Exception as e:
@@ -168,46 +166,51 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Query the LCSC database")
     parser.add_argument("issue_number", type=int, help="Github Issue Number")
     args = parser.parse_args()
-    #print(args)
     # list with results
     results = []
-    #jlc_pid = args.jlc_pid
 
     # Specify the repository and issue number
     repository_name = "Datenkrake/kicad-libraries"
     issue_number = args.issue_number
-
     # Read the GitHub issue
-    issue = read_github_issue(repository_name, issue_number)
-    issue_string = json.dumps(issue)
-    print("issue_strin: ", issue_string)
-    # if "," in jlc_pid:
-    #     # split the list into a list of jlc_pid
-    #     jlc_pid = jlc_pid.split(",")
-    #     # strip whitespace from each jlc_pid
-    #     jlc_pid = [j.strip() for j in jlc_pid]
-    #     # loop through the list of jlc_pid
-    #     for jlc_pid in jlc_pid:
-    #         # query the jlc_pid
-    #         p = do_the_thing(jlc_pid)
-    #         results.append(p)
+    issue_dict = read_github_issue(repository_name, issue_number)
 
-    # else:
-    #     # query the jlc_pid
-    #     p = do_the_thing(jlc_pid)
-    #     results.append(p)
+    if "," in issue_dict['pid']:
+        # split pid into a list of pids
+        pids = issue_dict['pid'].split(",")
+        # strip whitespace from each pid
+        pids = [pid.strip() for pid in pids]
+        # loop through the list of pids
+        for pid in pids:
+            # if pid does not contain B3D
+            if "B3D" not in pid:
+                # query the pid
+                p = do_the_thing(pid, issue_dict['overwrite'])
+                p = update_custom_component(pid, issue_dict)
+                results.append(p)
+            if "B3D" in pid:
+                # query the pid
+                p = update_custom_component(pid, issue_dict)
+                results.append(p)
 
-    # # convert each KicadComponent object in the list to a dictionary
-    # results_dicts = [result.to_dict() for result in results]
+    # if without_lcsc is True
+    # check that mfr and mpn are not None
+    if issue_dict['without_lcsc'] is True and issue_dict['mfr'] is not None and issue_dict['mpn'] is not None:
+        p = create_custom_component(issue_dict)
+        p = update_custom_component(p.uuid, issue_dict)
+        results.append(p)
 
-    # results_string = ""
-    # for results_dict in results_dicts:
-    #     # convert the list of dictionaries to a string
-    #     for key, value in results_dict.items():
-    #         results_string += f"{key}: {value} <br>"
+    # convert each KicadComponent object in the list to a dictionary
+    results_dicts = [result.to_dict() for result in results]
 
-    # results_string = shlex.quote(results_string)
+    results_string = ""
+    for results_dict in results_dicts:
+        # convert the list of dictionaries to a string
+        for key, value in results_dict.items():
+            results_string += f"{key}: {value} <br>"
 
-    # print(results_string)
-    print(f"::set-output name=script-output::{issue_string}")
+    results_string = shlex.quote(results_string)
+
+    print(results_string)
+    print(f"::set-output name=script-output::{results_string}")
 
