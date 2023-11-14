@@ -54,7 +54,9 @@ def read_github_issue(repository, issue_number):
         for line in issue_body:
             if ":" in line:
                 key, value = line.split(":")
-                thing_dict[key] = value.strip()
+                # strip spaces from beginning and end of value
+                value = value.strip()
+                thing_dict[key] = value
 
         print("thing_dict:", thing_dict)
         return thing_dict

@@ -156,6 +156,8 @@ if __name__ == "__main__":
         print("without_lcsc is True")
         p = create_custom_component(issue_dict)
         p = update_custom_component(p.uuid, issue_dict)
+        # add the component to the list of results as a dictionary
+        p = p.to_dict()
         results.append(p)
 
     # convert each KicadComponent object in the list to a dictionary
