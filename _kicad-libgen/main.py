@@ -7,6 +7,8 @@ import base64
 import json
 import shlex
 import sqlite3
+import os
+from github import Github
 
 from libgen import query_item
 from jlcquery import query_jlcparts
@@ -94,6 +96,31 @@ def do_the_thing(jlc_pid: str):
 
     return kicad_component
     
+def read_github_issue(repository, issue_number):
+    # Get the GitHub token from the environment variable
+    token = os.environ.get('GH_TOKEN')
+
+    # Create a Github object using the token
+    g = Github(token)
+
+    # Access the repository
+    repo = g.get_repo(repository)
+
+    try:
+        # Get the issue by number
+        issue = repo.get_issue(issue_number)
+
+        # Print some information about the issue
+        print(f"Title: {issue.title}")
+        print(f"Body: {issue.body}")
+        print(f"State: {issue.state}")
+        print(f"Created at: {issue.created_at}")
+        print(f"Updated at: {issue.updated_at}")
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+    return issue.body
 
     
 #%%
@@ -102,39 +129,47 @@ if __name__ == "__main__":
     # parse arguments
     import argparse
     parser = argparse.ArgumentParser(description="Query the LCSC database")
-    parser.add_argument("jlc_pid", type=str, help="JLCPCB part #")
+    parser.add_argument("issue_number", type=str, help="Github Issue Number")
     args = parser.parse_args()
     print(args)
     # list with results
     results = []
-    jlc_pid = args.jlc_pid
-    if "," in jlc_pid:
-        # split the list into a list of jlc_pid
-        jlc_pid = jlc_pid.split(",")
-        # strip whitespace from each jlc_pid
-        jlc_pid = [j.strip() for j in jlc_pid]
-        # loop through the list of jlc_pid
-        for jlc_pid in jlc_pid:
-            # query the jlc_pid
-            p = do_the_thing(jlc_pid)
-            results.append(p)
+    #jlc_pid = args.jlc_pid
 
-    else:
-        # query the jlc_pid
-        p = do_the_thing(jlc_pid)
-        results.append(p)
+    # Specify the repository and issue number
+    repository_name = "Datenkrake/kicad-libraries"
+    issue_number = args.issue_number
 
-    # convert each KicadComponent object in the list to a dictionary
-    results_dicts = [result.to_dict() for result in results]
+    # Read the GitHub issue
+    issue_body = read_github_issue(repository_name, issue_number)
 
-    results_string = ""
-    for results_dict in results_dicts:
-        # convert the list of dictionaries to a string
-        for key, value in results_dict.items():
-            results_string += f"{key}: {value} <br>"
+    # if "," in jlc_pid:
+    #     # split the list into a list of jlc_pid
+    #     jlc_pid = jlc_pid.split(",")
+    #     # strip whitespace from each jlc_pid
+    #     jlc_pid = [j.strip() for j in jlc_pid]
+    #     # loop through the list of jlc_pid
+    #     for jlc_pid in jlc_pid:
+    #         # query the jlc_pid
+    #         p = do_the_thing(jlc_pid)
+    #         results.append(p)
 
-    results_string = shlex.quote(results_string)
+    # else:
+    #     # query the jlc_pid
+    #     p = do_the_thing(jlc_pid)
+    #     results.append(p)
 
-    print(results_string)
-    print(f"::set-output name=script-output::{results_string}")
+    # # convert each KicadComponent object in the list to a dictionary
+    # results_dicts = [result.to_dict() for result in results]
+
+    # results_string = ""
+    # for results_dict in results_dicts:
+    #     # convert the list of dictionaries to a string
+    #     for key, value in results_dict.items():
+    #         results_string += f"{key}: {value} <br>"
+
+    # results_string = shlex.quote(results_string)
+
+    # print(results_string)
+    print(f"::set-output name=script-output::{issue_body}")
 
