@@ -95,7 +95,6 @@ def do_the_thing(jlc_pid: str):
     return kicad_component
     
 
-
     
 #%%
 # make callable from the command line
