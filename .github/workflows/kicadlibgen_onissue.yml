@@ -65,7 +65,7 @@ jobs:
     - name: Run your action here
       id: run-script
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         output=$(python _kicad-libgen/main.py "${{ github.event.issue.number }}")
         echo "::set-output name=script-output::$output"
