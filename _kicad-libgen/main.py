@@ -178,7 +178,7 @@ if __name__ == "__main__":
     # Read the GitHub issue
     issue = read_github_issue(repository_name, issue_number)
     issue_string = json.dumps(issue)
-    print(issue_string)
+    print("issue_strin: ", issue_string)
     # if "," in jlc_pid:
     #     # split the list into a list of jlc_pid
     #     jlc_pid = jlc_pid.split(",")
@@ -207,5 +207,5 @@ if __name__ == "__main__":
     # results_string = shlex.quote(results_string)
 
     # print(results_string)
-    print(f"::set-output name=script-output::{issue}")
+    print(f"::set-output name=script-output::{issue_string}")
 
