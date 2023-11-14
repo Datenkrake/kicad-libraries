@@ -117,7 +117,7 @@ def read_github_issue(repository, issue_number):
         issue_body = [line for line in issue_body if line != '']
         thing_dict = {}
         # first line is pid
-        pid = issue_body[0]
+        pid = issue_body[1]
         thing_dict['pid'] = pid
         # find the first line that contains "Overwrite"
         overwrite_line = [line for line in issue_body if "Overwrite" in line][0]
