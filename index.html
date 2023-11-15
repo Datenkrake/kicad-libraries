@@ -92,7 +92,13 @@
                     }
                 ],
             });
-    
+             // Add a custom button and link next to the search field
+            $('<a href="https://github.com/Datenkrake/kicad-libraries/issues/new?assignees=Datenkrake&labels=libgen&projects=&template=kicad-part.yaml&title=KiCad+Library%3A+" class="btn btn-primary" target="_blank">EDIT</a>')
+                .appendTo('div.dataTables_filter')
+                .css({
+                    'float': 'right',
+                    'margin-left': '10px'
+                });
             // Load data into the table
             $.ajax({
                 url: 'db.json',
