@@ -18,4 +18,4 @@ def generate_uuid(kicad_component):
             session.commit()
             session.refresh(existing_component)
             # return the component
-            return existing_component
+    return existing_component
