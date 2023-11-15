@@ -67,81 +67,79 @@
     </table>
 
     <script>
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                // Your DataTables options here
-                "lengthMenu": [25, 50, 100, 200], // Set the available options for items per page
-                "pageLength": 100, // Set the default number of items per page
-                //"dom": 'lBfrtip', // Add 'B' to enable DataTables Buttons
-                //"buttons": ['pageLength', 'colvis'], // Add buttons for items per page and column visibility
-                "columnDefs": [
-                    {
-                    "targets": 'all',
-                    //"className": 'dt-body-center',
-                    "searchable": true,
-                    },
-                    {
-                        // Target the Datasheet column (adjust the index based on your column order)
-                        "targets": [5], 
-                        "render": function(data, type, row, meta) {
-                        // Assuming the Datasheet column contains URLs
-                            return type === 'display' ?
-                                '<a href="' + data + '" target="_blank">' + data + '</a>' :
-                                data;
-                        }
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            "lengthMenu": [25, 50, 100, 200],
+            "pageLength": 100,
+            "paging": true,
+            "displayStart": 0,
+            "columnDefs": [
+                {
+                    "targets": [5], // Datasheet column
+                    "render": function(data, type, row, meta) {
+                        return type === 'display' ?
+                            '<a href="' + data + '" target="_blank">' + data + '</a>' :
+                            data;
                     }
-                ],
-            });
-             // Add a custom button and link next to the search field
-            $('<a href="https://github.com/Datenkrake/kicad-libraries/issues/new?assignees=Datenkrake&labels=libgen&projects=&template=kicad-part.yaml&title=KiCad+Library%3A+" class="btn btn-primary" target="_blank">EDIT</a>')
-                .appendTo('div.dataTables_filter')
-                .css({
-                    'float': 'right',
-                    'margin-left': '10px'
-                });
-            // Load data into the table
-            $.ajax({
-                url: 'db.json',
-                dataType: 'json',
-                success: function(data) {
-                    // Clear existing data in the table
-                    table.clear();
-    
-                    // Iterate through the data and add rows using DataTables API
-                    $.each(data, function(index, row) {
-                        table.row.add([
-                            // row.id,
-                            row.uuid,
-                            row.Category+"//"+row.Subcategory,
-                            row.MFR,
-                            row.MPN,
-                            row.Description,
-                            row.Datasheet,
-                            row.LCSC,
-                            row.Stock,
-                            row.Price,
-                            row.Symbols.split(":")[1],
-                            row.Footprints.split(":")[1],
-                            row.Value,
-                            row.value1,
-                            row.value2,
-                            row.value3,
-                            row.value4,
-                            row.vendor1,
-                            row.vendor1_partnumber,
-                            row.vendor2,
-                            row.vendor2_partnumber,
-                            row.vendor3,
-                            row.vendor3_partnumber,
-                            row.AECQ,
-                            row.SN29500_category,
-                            row.SN29500_base_fit
-                        ]).draw(false); // Use draw(false) to prevent DataTables from resetting the sorting
-                    });
                 }
-            });
+            ],
         });
-    </script>
+
+        // Add a custom button and link next to the search field
+        $('<a href="https://github.com/Datenkrake/kicad-libraries/issues/new?assignees=Datenkrake&labels=libgen&projects=&template=kicad-part.yaml&title=KiCad+Library%3A+" class="btn btn-primary" target="_blank">EDIT</a>')
+            .appendTo('div.dataTables_filter')
+            .css({
+                'float': 'right',
+                'margin-left': '10px'
+            });
+
+        // Load data into the table
+        $.ajax({
+            url: 'db.json',
+            dataType: 'json',
+            success: function(data) {
+                // Clear existing data in the table
+                table.clear();
+
+                // Map the data to an array of arrays for DataTables
+                var rows = data.map(function(row) {
+                    return [
+                        row.uuid,
+                        row.Category + "//" + row.Subcategory,
+                        row.MFR,
+                        row.MPN,
+                        row.Description,
+                        row.Datasheet,
+                        row.LCSC,
+                        row.Stock,
+                        row.Price,
+                        row.Symbols ? row.Symbols.split(":")[1] : '', // Check if Symbols is present
+                        row.Footprints ? row.Footprints.split(":")[1] : '', // Check if Footprints is present
+                        row.Value,
+                        row.value1,
+                        row.value2,
+                        row.value3,
+                        row.value4,
+                        row.vendor1,
+                        row.vendor1_partnumber,
+                        row.vendor2,
+                        row.vendor2_partnumber,
+                        row.vendor3,
+                        row.vendor3_partnumber,
+                        row.AECQ,
+                        row.SN29500_category,
+                        row.SN29500_base_fit
+                    ];
+                });
+
+                // Add all rows at once and draw the table
+                table.rows.add(rows).draw();
+            }
+        });
+
+    });
+</script>
+
     
 
 </body>
