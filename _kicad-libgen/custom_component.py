@@ -79,7 +79,8 @@ def update_custom_component(pid, issue_dict: dict):
             # If Symbols is not None, update symlibtable
             if issue_dict.get('Symbols') is not None:
                 update_symlibtable(issue_dict['Symbols'])
-
+            
+            session.add(existing_component)
             session.commit()
             session.refresh(existing_component)
         
