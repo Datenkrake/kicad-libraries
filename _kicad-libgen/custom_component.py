@@ -104,6 +104,7 @@ def update_custom_component(pid, issue_dict: dict):
                     setattr(existing_component, key, value)
                 if value == "-":
                     setattr(existing_component, key, "")
+            session.add(existing_component)
             session.commit()
             session.refresh(existing_component)
         
