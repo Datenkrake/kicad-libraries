@@ -100,7 +100,7 @@ def update_custom_component(pid, issue_dict: dict):
             # if the issue_dict value is not None, overwrite the existing value
             # if the issue_dict value is "-", set value to None
             for key, value in kicad_component.dict().items():
-                if value is not None and value != "-":
+                if (value is not None or value != '') and value != "-":
                     setattr(existing_component, key, value)
                 if value == "-":
                     setattr(existing_component, key, "")
