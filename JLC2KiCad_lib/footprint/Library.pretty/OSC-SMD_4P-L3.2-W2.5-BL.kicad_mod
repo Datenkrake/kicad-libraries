@@ -1,4 +1,4 @@
-(module "OSC-SMD_4P-L3.2-W2.5-BL" (layer F.Cu) (tedit 655433A3)
+(module "OSC-SMD_4P-L3.2-W2.5-BL" (layer F.Cu) (tedit 655439D9)
   (descr "OSC-SMD_4P-L3.2-W2.5-BL footprint")
   (tags "OSC-SMD_4P-L3.2-W2.5-BL footprint")
   (fp_text reference REF** (at -0.127 -3.651257) (layer F.SilkS)
