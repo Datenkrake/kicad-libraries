@@ -9,9 +9,26 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.11.7/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/buttons/2.1.1/js/dataTables.buttons.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/buttons/2.1.1/js/buttons.html5.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.7/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.dataTables.min.css"> -->
 
     <style>
         /* Add your custom styles here */
+        #example td:nth-child(2) {
+            max-width: 200px; /* Set the maximum width in pixels (adjust as needed) */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #example td:nth-child(6) {
+            max-width: 100px; /* Set the maximum width in pixels (adjust as needed) */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
     </style>
 </head>
 <body>
@@ -22,29 +39,28 @@
         <thead>
             <!-- Generate table headers dynamically based on columns from the database -->
             <tr>
-                <th>ID</th>
-                <th>LCSC</th>
-                <th>MPN</th>
+                <!-- <th>ID</th> -->
+                <th>UUID</th>
+                <th>Category</th>
                 <th>MFR</th>
-                <th>Value</th>
+                <th>MPN</th>
+                <th>Description</th>
+                <th>Datasheet</th>
+                <th>LCSC</th>
+                <th>Stock</th>
+                <th>Price</th>
                 <th>Symbols</th>
                 <th>Footprints</th>
-                <th>Datasheet</th>
-                <th>Description</th>
-                <th>Stock</th>
-                <th>Category</th>
-                <th>Subcategory</th>
-                <th>Price</th>
-                <th>UUID</th>
+                <th>Value</th>
                 <th>Value1</th>
                 <th>Value2</th>
                 <th>Value3</th>
                 <th>Value4</th>
                 <th>Vendor1</th>
-                <th>Vendor2</th>
-                <th>Vendor3</th>
                 <th>Vendor1_PartNumber</th>
+                <th>Vendor2</th>
                 <th>Vendor2_PartNumber</th>
+                <th>Vendor3</th>
                 <th>Vendor3_PartNumber</th>
                 <th>AECQ</th>
                 <th>SN29500_Category</th>
@@ -60,6 +76,27 @@
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 // Your DataTables options here
+                "lengthMenu": [25, 50, 100, 200], // Set the available options for items per page
+                "pageLength": 100, // Set the default number of items per page
+                //"dom": 'lBfrtip', // Add 'B' to enable DataTables Buttons
+                //"buttons": ['pageLength', 'colvis'], // Add buttons for items per page and column visibility
+                "columnDefs": [
+                    {
+                    "targets": 'all',
+                    //"className": 'dt-body-center',
+                    "searchable": true,
+                    },
+                    {
+                        // Target the Datasheet column (adjust the index based on your column order)
+                        "targets": [5], 
+                        "render": function(data, type, row, meta) {
+                        // Assuming the Datasheet column contains URLs
+                            return type === 'display' ?
+                                '<a href="' + data + '" target="_blank">' + data + '</a>' :
+                                data;
+                        }
+                    }
+                ],
             });
     
             // Load data into the table
@@ -73,29 +110,28 @@
                     // Iterate through the data and add rows using DataTables API
                     $.each(data, function(index, row) {
                         table.row.add([
-                            row.id,
-                            row.LCSC,
-                            row.MPN,
-                            row.MFR,
-                            row.Value,
-                            row.Symbols,
-                            row.Footprints,
-                            row.Datasheet,
-                            row.Description,
-                            row.Stock,
-                            row.Category,
-                            row.Subcategory,
-                            row.Price,
+                            // row.id,
                             row.uuid,
+                            row.Category+"//"+row.Subcategory,
+                            row.MFR,
+                            row.MPN,
+                            row.Description,
+                            row.Datasheet,
+                            row.LCSC,
+                            row.Stock,
+                            row.Price,
+                            row.Symbols.split(":")[1],
+                            row.Footprints.split(":")[1],
+                            row.Value,
                             row.value1,
                             row.value2,
                             row.value3,
                             row.value4,
                             row.vendor1,
-                            row.vendor2,
-                            row.vendor3,
                             row.vendor1_partnumber,
+                            row.vendor2,
                             row.vendor2_partnumber,
+                            row.vendor3,
                             row.vendor3_partnumber,
                             row.AECQ,
                             row.SN29500_category,
