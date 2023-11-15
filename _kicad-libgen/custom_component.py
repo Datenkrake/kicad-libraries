@@ -3,6 +3,9 @@ from database import engine
 import kicadmodel
 from generate_uuid import generate_uuid
 from symlibtable import update_symlibtable
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
+
+
 
 def create_custom_component(issue_dict: dict):
     # create kicadcomponent
@@ -65,6 +68,7 @@ def update_custom_component(pid, issue_dict: dict):
         try:
             if pid.startswith("B3D"):
                 existing_component = session.query(kicadmodel.KicadComponent).filter(kicadmodel.KicadComponent.uuid == pid).one()
+                # get existing component uuid from pid and store in existing_component2 variable without using session.query
             else:
                 existing_component = session.query(kicadmodel.KicadComponent).filter(kicadmodel.KicadComponent.LCSC == pid).one()
 
@@ -84,9 +88,11 @@ def update_custom_component(pid, issue_dict: dict):
             session.commit()
             session.refresh(existing_component)
         
-        except:
-            print("Component not found")
-            return None
+        except NoResultFound:
+            print(f"No record found with uuid={pid}")
+        except MultipleResultsFound:
+            print(f"Multiple records found with uuid={pid}")
+
 
     return existing_component
 
