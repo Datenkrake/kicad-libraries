@@ -309,4 +309,5 @@
   (lib (name "CL10B105KA8NNNC")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL10B105KA8NNNC.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "CL10B103KB8NNNC")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL10B103KB8NNNC.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "JMK107B7105KA-T")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/JMK107B7105KA-T.kicad_sym")(options "")(descr "")(hidden))
 )
