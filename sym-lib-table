@@ -312,4 +312,5 @@
   (lib (name "JMK107B7105KA-T")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/JMK107B7105KA-T.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "C1608X7R1H472KT000N")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/C1608X7R1H472KT000N.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "CGA3E2X7R1H103KT0Y0N")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CGA3E2X7R1H103KT0Y0N.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "CGA3E2X7R1H104KT0Y0N")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CGA3E2X7R1H104KT0Y0N.kicad_sym")(options "")(descr "")(hidden))
 )
