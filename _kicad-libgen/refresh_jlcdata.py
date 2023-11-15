@@ -1,6 +1,6 @@
 import sqlite3
 from jlcquery import query_jlcparts
-
+from update_db_json import update_db_json
 
 def main():
     # connect to the database
@@ -34,6 +34,7 @@ def main():
             cursor2.execute(f"UPDATE kicadcomponent SET Price = '{component['Price']}', Stock = '{component['Stock']}' WHERE LCSC = '{lcsc}'")
             con2.commit()
 
+    update_db_json()
 
 if __name__ == '__main__':
     main()

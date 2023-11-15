@@ -19,6 +19,7 @@ from values import find_values
 from generate_uuid import generate_uuid
 from custom_component import create_custom_component, update_custom_component
 from read_issue import read_github_issue
+from update_db_json import update_db_json
 
 def do_the_thing(jlc_pid: str, overwrite: bool):
     # query the kicad library from JLC using JLC2KiCad
@@ -175,6 +176,8 @@ if __name__ == "__main__":
     uuids = [result.uuid for result in results if result is not None]
     # convert the list of uuids to a string
     uuids_string = shlex.quote(json.dumps(uuids))
+
+    update_db_json()
 
     print(results_string)
     print(f"::set-output name=script-output::{results_string}")
