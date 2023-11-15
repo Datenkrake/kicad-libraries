@@ -106,8 +106,9 @@ def update_custom_component(pid, issue_dict: dict):
                     setattr(existing_component, key, "")
             session.commit()
             session.refresh(existing_component)
-            return existing_component
         
         except:
             print("Component not found")
             return None
+
+    return existing_component
