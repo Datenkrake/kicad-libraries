@@ -308,4 +308,5 @@
   (lib (name "BZV55-C27,115")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/BZV55-C27,115.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "CL10B105KA8NNNC")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL10B105KA8NNNC.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "CL10B103KB8NNNC")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CL10B103KB8NNNC.kicad_sym")(options "")(descr "")(hidden))
 )
