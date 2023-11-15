@@ -60,35 +60,6 @@ def create_custom_component(issue_dict: dict):
 
 
 def update_custom_component(pid, issue_dict: dict):
-    # create kicadcomponent
-    kicad_component = kicadmodel.KicadComponent()
-
-    # set the values
-    if issue_dict['Symbols'] is not None and issue_dict['Symbols'] != "-":
-        kicad_component.Symbols = issue_dict['Symbols']+":"+issue_dict['Symbols']
-
-    if issue_dict['Footprints'] is not None and issue_dict['Footprints'] != "-":
-        kicad_component.Footprints = "footprint:"+issue_dict['Footprints']
-
-    kicad_component.MFR = issue_dict['mfr']
-    kicad_component.MPN = issue_dict['mpn']
-    # kicad_component.LCSC = None
-    # kicadmodel.Value = issue_dict['Value']
-    kicad_component.Datasheet = issue_dict['Datasheet']
-    kicad_component.Description = issue_dict['Description']
-    # kicadmodel.Stock = issue_dict['Stock']
-    kicad_component.Category = issue_dict['Category']
-    kicad_component.Category = None
-    
-    kicad_component.Subcategory = issue_dict['Subcategory']
-    kicad_component.value1 = issue_dict['value1']
-    kicad_component.value2 = issue_dict['value2']
-    kicad_component.value3 = issue_dict['value3']
-    kicad_component.value4 = issue_dict['value4']
-
-    if kicad_component.Symbols is not None:
-        update_symlibtable(issue_dict['Symbols'])
-
     with Session(engine) as session:
         # get the existing component
         try:
@@ -96,15 +67,19 @@ def update_custom_component(pid, issue_dict: dict):
                 existing_component = session.query(kicadmodel.KicadComponent).filter(kicadmodel.KicadComponent.uuid == pid).one()
             else:
                 existing_component = session.query(kicadmodel.KicadComponent).filter(kicadmodel.KicadComponent.LCSC == pid).one()
+
             # Component found, update attributes
-            # if the issue_dict value is not None, overwrite the existing value
-            # if the issue_dict value is "-", set value to None
-            for key, value in kicad_component.dict().items():
-                if (value is not None or value != "") and value != "-":
+            for key, value in issue_dict.items():
+                # Check for non-empty string
+                if value is not None and value != "":
                     setattr(existing_component, key, value)
-                if value == "-":
-                    setattr(existing_component, key, "")
-            session.add(existing_component)
+                elif value == "-":
+                    setattr(existing_component, key, None)
+
+            # If Symbols is not None, update symlibtable
+            if issue_dict.get('Symbols') is not None:
+                update_symlibtable(issue_dict['Symbols'])
+
             session.commit()
             session.refresh(existing_component)
         
@@ -113,3 +88,4 @@ def update_custom_component(pid, issue_dict: dict):
             return None
 
     return existing_component
+
