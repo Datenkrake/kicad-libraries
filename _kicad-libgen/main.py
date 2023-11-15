@@ -144,7 +144,7 @@ if __name__ == "__main__":
         if "B3D" not in issue_dict['pid']:
             # query the pid
             p = do_the_thing(issue_dict['pid'], issue_dict['overwrite'])
-            p = update_custom_component(issue_dict['pid'], issue_dict)
+            #p = update_custom_component(issue_dict['pid'], issue_dict)
             results.append(p)
         if "B3D" in issue_dict['pid']:
             # query the pid
