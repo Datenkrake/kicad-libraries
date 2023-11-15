@@ -62,7 +62,7 @@ def create_custom_component(issue_dict: dict):
     return kicad_component
 
 
-def update_custom_component(pid, issue_dict: dict):
+def update_custom_component(pid: str, issue_dict: dict):
     with Session(engine) as session:
         # get the existing component
         try:
