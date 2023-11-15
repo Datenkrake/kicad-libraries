@@ -322,4 +322,5 @@
   (lib (name "C1608X7R1H473KT000N")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/C1608X7R1H473KT000N.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "CGA3E2X7R1H222KT0Y0N")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/CGA3E2X7R1H222KT0Y0N.kicad_sym")(options "")(descr "")(hidden))
   (lib (name "ADS1118IDGSR_C55347")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/ADS1118IDGSR_C55347.kicad_sym")(options "")(descr "")(hidden))
+  (lib (name "relay_dpdt_w_diode")(type "KiCad")(uri "${KICAD7_SYMBOL_DIR}/relay_dpdt_w_diode.kicad_sym")(options "")(descr "")(hidden))
 )

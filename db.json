@@ -3137,7 +3137,7 @@
     "MPN": "5009993",
     "MFR": "Miunske",
     "Value": null,
-    "Symbols": ":",
+    "Symbols": "relay_dpdt_w_diode:relay_dpdt_w_diode",
     "Footprints": "footprint:",
     "Datasheet": "",
     "Description": "",
