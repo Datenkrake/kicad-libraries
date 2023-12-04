@@ -22,6 +22,8 @@ def main():
     result = [dict(zip([column[1] for column in columns], value)) for value in values]
 
     for component in result:
+        if component['LCSC'] == 'None':
+            continue
         # get the lcsc pid
         lcsc = component['LCSC']
         # get the jlcdata
